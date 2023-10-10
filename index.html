@@ -1,7 +1,61 @@
 <!DOCTYPE html>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="heiume studio">
+    <meta property="og:type" content="website">
+
+    <title>heiume studio</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="js/clipboard.js"></script>
+    <script src="js/fonts.js"></script>
+    <script src="js/preview.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <link rel="icon shortcut" type="image/x-icon " href="./favicon.ico" />
+
+</head>
+
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+
+    <div style="margin: 50px; max-width: initial;">
+        Heiume Studio
+
+        <hr/>
+        <h4 style="text-align:center; ">Font Generator</h4>
+
+        <br>
+
+        <textarea type="text" class="form-control fancytext" style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required" name="text" placeholder="Type or paste text here.." value=""></textarea>
+        <br />
+
+        <div id="result">
+
+
+            <div class="input-group mb-3"><input type="text" class="form-control text-9" value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ" id="copy_8" readonly="readonly">
+                <div class="input-group-append">
+                    <span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <footer style="text-align: center; margin: 20px; ">© 2023 <a href="https://heiume.github.io/"><b>heiume studio</b></a></footer>
+
+    </div>
+    <script src="js/copybutton.js"></script>
+
+
 </body>
+
 </html>
