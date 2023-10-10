@@ -14,40 +14,20 @@ body {
     flex-direction: column;
 }
 
-button {
-    display: inline-block;
-    padding: 12px 22px;
-    font-size: 18px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #333333;
-    background-color: #ececec;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 5px #333333;
-}
-
-.button:hover {
-    background-color: #cfcfcf;
-}
-
-.button:active {
-    background-color: #cfcfcf;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
-
-#emoji-btn {
+#emoji-face-btn {
     font-size: 3rem;
-    filter: grayscale(1);
     transition: .1s;
+    filter: grayscale(1);
     border: none;
     cursor: pointer;
 }
 
-#emoji-btn:hover {
+#emoji-face-btn:hover {
+    font-size: 3rem;
     transform: scale(1.23);
     filter: grayscale(0);
+}
+
+a {
+    color: #8b939c;
 }
