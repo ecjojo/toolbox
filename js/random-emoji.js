@@ -1,10 +1,10 @@
 // Get emojis from https://emojipedia.org/
 
-const btn = document.getElementById("emoji-face-btn");
+const emojifaceBtn = document.getElementById("emoji-face-btn");
 
 const emojis = [
   '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇',
-  '🥰','😍','🤩','😘','😗','☺','😚','😙','🥲',
+  '🥰','😍','🤩','😘','😗','😚','😙','🥲',
   '😋','😛','😜','🤪','😝','🤑',
   '🤗','🤭','🫢','🫣','🤫','🤔','🫡',
   '🤐','🤨','😐','😑','😶','🫥','😶‍🌫️','😏','😒','🙄','😬','😮‍💨','🤥',
@@ -19,16 +19,16 @@ const emojis = [
 
 
 
-btn.addEventListener("click", () => { 
-  btn.style = "filter: grayscale(0);";
+emojifaceBtn.addEventListener("click", () => { 
+  emojifaceBtn.style = "filter: grayscale(0);";
     for(let i=0;i<7;i++){
       setTimeout(function() {
-       btn.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emojifaceBtn.innerText = emojis[Math.floor(Math.random() * emojis.length)];
    }, 100 * i)
    }
-   
 });
-    
+
+ 
 
 // '🌸','🌷','🍀','🌹','🌻','🌺','🌿','🍄','🐣','🎀','💜','💕','💎','🐛','✨','🔥','🫶','⭐','🍀',
 //'💩','🐈‍⬛','🐑','🦕','🐟','🐌'
