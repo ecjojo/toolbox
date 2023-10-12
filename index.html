@@ -10,14 +10,6 @@
 
     <title>heiume studio</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
-    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#333333">
-    <meta name="theme-color" content="#ffffff">
-
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -29,6 +21,7 @@
     <script src="js/preview.js"></script>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
 
 </head>
 
@@ -36,10 +29,10 @@
     <div style="display: flex; justify-content: center;">
         <div style="margin: 50px; max-width: 360px; ">
 
-            <b>ʜᴇɪᴜᴍᴇ ᴛᴏᴏʟʙᴏx</b>
+            <b>🧰ʜᴇɪᴜᴍᴇ ᴛᴏᴏʟʙᴏx</b>
 
             <p>
-                <em style="font-size: 14px ">" ɪ ᴀᴍ ᴛᴏᴏ ʟᴀᴢʏ ᴛᴏ ʙᴇ ʟᴀᴢʏ... "  </em>🙃
+                <em style="font-size: 14px" id="random-sentence">"ʜᴇʟʟᴏ ᴍʏ ꜰʀɪᴇɴᴅ" </em>
             </p>
 
             <hr/>
@@ -61,7 +54,7 @@
 
                         <span id='emoji-cute-btn'>🌷</span>
 
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-face-btn ">Copy
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#emoji-face-btn ">Copy
             </span>
 
                     </div>
@@ -76,7 +69,7 @@
 
                         <span id='emoji-face-btn'>😀</span>
 
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-face-btn ">Copy
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#emoji-face-btn">Copy
             </span>
 
                     </div>
@@ -91,7 +84,7 @@
 
                         <span id='emoji-hand-btn'>👌</span>
 
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-hand-btn ">Copy
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#emoji-hand-btn">Copy
             </span>
 
                     </div>
@@ -108,7 +101,7 @@
 
                         <script src="js/random-color.js "></script>
 
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#color-name ">Copy
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#color-name">Copy
             </span>
 
                     </div>
@@ -126,7 +119,7 @@
                     <div id="result ">
                         <div class="input-group mb-3 "><input type="text " class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
                             <div class="input-group-append ">
-                                <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#copy_8 ">Copy
+                                <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
                             </span>
                             </div>
                         </div>
@@ -171,7 +164,9 @@
     </div>
     <script src="js/copybutton.js "></script>
     <script src="js/random-emoji.js "></script>
+    <script src="js/random-sentence.js "></script>
     <script src="js/tooldisplay.js "></script>
+
 </body>
 
 </html>
