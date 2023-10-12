@@ -5,6 +5,7 @@ body {
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 .container {
@@ -12,6 +13,10 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.hidden {
+    display: none;
 }
 
 #emoji-face-btn {
@@ -23,6 +28,34 @@ body {
 }
 
 #emoji-face-btn:hover {
+    font-size: 3rem;
+    transform: scale(1.2);
+    filter: grayscale(0);
+}
+
+#emoji-hand-btn {
+    font-size: 3rem;
+    transition: .1s;
+    filter: grayscale(1);
+    border: none;
+    cursor: pointer;
+}
+
+#emoji-hand-btn:hover {
+    font-size: 3rem;
+    transform: scale(1.2);
+    filter: grayscale(0);
+}
+
+#emoji-cute-btn {
+    font-size: 3rem;
+    transition: .1s;
+    filter: grayscale(1);
+    border: none;
+    cursor: pointer;
+}
+
+#emoji-cute-btn:hover {
     font-size: 3rem;
     transform: scale(1.2);
     filter: grayscale(0);
@@ -58,12 +91,45 @@ footer {
     color: #8b939c;
 }
 
-button:active {
-    padding: 0;
+button {
+    background: #e0e0e0;
+    color: #8b939c;
+    width: 50px;
+    height: 50px;
+    font-size: 13px;
+    cursor: pointer;
+    margin: 4px;
+    border-radius: 50%;
+    height: 50px;
     outline: none;
+    border: 0px;
+}
+
+button:hover {
+    background: #b4b7ba;
+    color: #e0e0e0;
+}
+
+button:active {
+    outline: none;
+    border: 0px;
 }
 
 button:focus {
-    padding: 0;
     outline: none;
+    border: 0px;
+}
+
+.toggle-content {
+    display: none;
+}
+
+.toggle-content.active {
+    display: block;
+}
+
+.toggle-button.active {
+    outline-style: solid;
+    outline-offset: -5px;
+    outline-color: #ffffff;
 }

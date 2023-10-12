@@ -1,8 +1,10 @@
 // Get emojis from https://emojipedia.org/
 
 const emojifaceBtn = document.getElementById("emoji-face-btn");
+const emojihandBtn = document.getElementById("emoji-hand-btn");
+const emojicuteBtn = document.getElementById("emoji-cute-btn");
 
-const emojis = [
+const emojifaces = [
   '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃','🫠','😉','😊','😇',
   '🥰','😍','🤩','😘','😗','😚','😙','🥲',
   '😋','😛','😜','🤪','😝','🤑',
@@ -17,21 +19,49 @@ const emojis = [
   '😤','😡','😠','🤬'
 ];
 
+const emojihands = [
+  '👋','🤚','🖐','✋','🖖','🫱','🫲','🫳','🫴',
+  '👌','🤌','🤏','✌','🤞','🫰','🤟','🤘','🤙',
+  '👈','👉','👆','🖕','👇','☝','🫵',
+  '👍','👎','✊','👊','🤛','🤜'
+];
+
+const emojicutes = [
+
+  '🌸','🌷','🍀','🌹','🌻','🌺','🌿','🍄','🐣','🎀','💜','💕','💎','🐛','✨','🫶','⭐','🍀',
+  '💩','🐑','🦕','🐟','🐌'
+];
 
 
 emojifaceBtn.addEventListener("click", () => { 
   emojifaceBtn.style = "filter: grayscale(0);";
     for(let i=0;i<7;i++){
       setTimeout(function() {
-        emojifaceBtn.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        emojifaceBtn.innerText = emojifaces[Math.floor(Math.random() * emojifaces.length)];
    }, 100 * i)
    }
 });
 
- 
 
-// '🌸','🌷','🍀','🌹','🌻','🌺','🌿','🍄','🐣','🎀','💜','💕','💎','🐛','✨','🔥','🫶','⭐','🍀',
-//'💩','🐈‍⬛','🐑','🦕','🐟','🐌'
+emojihandBtn.addEventListener("click", () => { 
+  emojihandBtn.style = "filter: grayscale(0);";
+    for(let i=0;i<7;i++){
+      setTimeout(function() {
+        emojihandBtn.innerText = emojihands[Math.floor(Math.random() * emojihands.length)];
+   }, 100 * i)
+   }
+});
+
+emojicuteBtn.addEventListener("click", () => { 
+  emojicuteBtn.style = "filter: grayscale(0);";
+    for(let i=0;i<7;i++){
+      setTimeout(function() {
+        emojicuteBtn.innerText = emojicutes[Math.floor(Math.random() * emojicutes.length)];
+   }, 100 * i)
+   }
+});
+
+
 
 const getRandomEmoji = (cat, sub) => {
 

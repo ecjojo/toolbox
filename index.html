@@ -33,108 +33,145 @@
 </head>
 
 <body>
+    <div style="display: flex; justify-content: center;">
+        <div style="margin: 50px; max-width: 360px; ">
 
+            <b>ʜᴇɪᴜᴍᴇ ᴛᴏᴏʟʙᴏx</b>
 
-    <div style="margin: 50px; max-width: initial;">
+            <p>
+                <em style="font-size: 14px ">" ɪ ᴀᴍ ᴛᴏᴏ ʟᴀᴢʏ ᴛᴏ ʙᴇ ʟᴀᴢʏ... "  </em>🙃
+            </p>
 
-        <b>ʜᴇɪᴜᴍᴇ ᴛᴏᴏʟʙᴏx</b>
-
-        <p>
-            <em style="font-size: 14px">" ɪ ᴀᴍ ᴛᴏᴏ ʟᴀᴢʏ ᴛᴏ ʙᴇ ʟᴀᴢʏ... "  </em>🙃
-        </p>
-
-        <hr/>
-        <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ꜰᴀᴄᴇ</h5>
-        <br>
-        <div class="container">
-
-            <span id='emoji-face-btn'>😀</span>
-            <script src="js/random-emoji.js "></script>
-
-            <span class="input-group-text copybutton" style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#emoji-face-btn">Copy
-            </span>
-
-        </div>
-        <br>
-        <hr/>
-
-        <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴄᴏʟᴏʀ</h5>
-        <br>
-        <div class="container">
-
-
-
-            <span id='color-btn'><span id='color-name'>#ffac00</span></span>
-
-
-
-            <script src="js/random-color.js "></script>
-
-            <span class="input-group-text copybutton" style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#color-name">Copy
-            </span>
-
-            <div>
-
-
-                <br>
-                <hr/>
-                <h5 style="text-align:center; ">ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
-                <br>
-
-                <textarea type="text" class="form-control fancytext " style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required" name="text" placeholder="Type or paste text here.. " value=""></textarea>
-                <br />
-
-                <div id="result">
-
-                    <div class="input-group mb-3 "><input type="text" class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
-                        <div class="input-group-append ">
-                            <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
-                    </span>
-                        </div>
-                    </div>
-
-                </div>
-
-                <hr/>
-
-                <div class="container ">
-                    <div>
-
-
-                        <a style="padding: 2px " href="https://heiume.blogspot.com/ " onmouseover="this.style.color='#FFA440' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class="fa fa-rss-square " aria-hidden="true "></i>
-                        </a>
-
-                        <a style="padding: 2px " href="https://twitter.com/heiume3D " onmouseover="this.style.color='#56A2E8' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class="fa fa-twitter fa-lg " aria-hidden="true "></i>
-                        </a>
-
-                        <a style="padding: 2px " href="https://discord.gg/brUbYQuETg " onmouseover="this.style.color='#7470DD ' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class="fa fa-comments fa-lg " aria-hidden="true "></i>
-                        </a>
-
-                        <a style="padding: 2px " href="https://github.com/heiume " onmouseover="this.style.color='#B65CE5 ' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class="fa fa-github fa-lg " aria-hidden="true "></i>
-                        </a>
-
-                        <a style="padding: 2px " href="https://www.youtube.com/@heiume " onmouseover="this.style.color='#E85656' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class="fa fa-youtube-play fa-lg " aria-hidden="true "></i>
-                        </a>
-
-                        <a style="padding: 2px " href="https://heiume.gumroad.com/ " onmouseover="this.style.color='#ED7AE3' ; " onmouseout="this.style.color='#8b939c' ; ">
-                            <i class=" fa fa-shopping-cart fa-lg " aria-hidden="true "></i>
-                        </a>
-
-
-                    </div>
-
-                </div>
-                <footer style="text-align: center; margin: 20px; ">© 2023 <a href="https://heiume.github.io/ ">heiume studio</a></footer>
+            <hr/>
+            <div style="display: flex; justify-content: center; ">
+                <button class="toggle-button active">🌷</button>
+                <button class="toggle-button">😀</button>
+                <button class="toggle-button">👌</button>
+                <button class="toggle-button">ᴄᴏʟᴏʀ</button>
+                <button class="toggle-button">ꜰᴏɴᴛ</button>
 
             </div>
-            <script src="js/copybutton.js "></script>
+            <div class="content-container">
+                <!-- /div5/ -->
+                <div class="toggle-content active">
+                    <hr/>
+                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ꜰᴀᴄᴇ</h5>
+                    <br>
+                    <div class="container ">
+
+                        <span id='emoji-cute-btn'>🌷</span>
+
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-face-btn ">Copy
+            </span>
+
+                    </div>
+                    <br>
+                </div>
+                <!-- /div1/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ꜰᴀᴄᴇ</h5>
+                    <br>
+                    <div class="container ">
+
+                        <span id='emoji-face-btn'>😀</span>
+
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-face-btn ">Copy
+            </span>
+
+                    </div>
+                    <br>
+                </div>
+                <!-- /div2/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ʜᴀɴᴅ</h5>
+                    <br>
+                    <div class="container ">
+
+                        <span id='emoji-hand-btn'>👌</span>
+
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#emoji-hand-btn ">Copy
+            </span>
+
+                    </div>
+                    <br>
+                </div>
+                <!-- /div3/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴄᴏʟᴏʀ</h5>
+                    <br>
+                    <div class="container ">
+
+                        <span id='color-btn'><span id='color-name'>#ffac00</span></span>
+
+                        <script src="js/random-color.js "></script>
+
+                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#color-name ">Copy
+            </span>
+
+                    </div>
+                    <br>
+                </div>
+                <!-- /div4/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
+                    <br>
+
+                    <textarea type="text " class="form-control fancytext " style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required " name="text " placeholder="Type or paste text here.. " value=" "></textarea>
+                    <br />
+
+                    <div id="result ">
+                        <div class="input-group mb-3 "><input type="text " class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
+                            <div class="input-group-append ">
+                                <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy " data-clipboard-target="#copy_8 ">Copy
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- // -->
+            </div>
+            <hr/>
+            <div class="container ">
+                <div>
+                    <a style="padding: 2px " href="https://heiume.blogspot.com/ " onmouseover="this.style.color='#FFA440' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class="fa fa-rss-square " aria-hidden="true "></i>
+                    </a>
+
+                    <a style="padding: 2px " href="https://twitter.com/heiume3D " onmouseover="this.style.color='#56A2E8' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class="fa fa-twitter fa-lg " aria-hidden="true "></i>
+                    </a>
 
 
+                    <a style="padding: 2px " href="https://www.youtube.com/@heiume " onmouseover="this.style.color='#E85656' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class="fa fa-youtube-play fa-lg " aria-hidden="true "></i>
+                    </a>
+
+                    <a style="padding: 2px " href="https://github.com/heiume " onmouseover="this.style.color='#B65CE5 ' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class="fa fa-github fa-lg " aria-hidden="true "></i>
+                    </a>
+
+                    <a style="padding: 2px " href="https://discord.gg/brUbYQuETg " onmouseover="this.style.color='#7470DD ' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class="fa fa-comments fa-lg " aria-hidden="true "></i>
+                    </a>
+
+                    <a style="padding: 2px " href="https://heiume.gumroad.com/ " onmouseover="this.style.color='#ED7AE3' ; " onmouseout="this.style.color='#8b939c' ; ">
+                        <i class=" fa fa-shopping-cart fa-lg " aria-hidden="true "></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <footer style="text-align: center; margin: 20px; ">© 2023 <a href="https://heiume.github.io/ ">heiume studio</a></footer>
+        </div>
+    </div>
+    </div>
+    <script src="js/copybutton.js "></script>
+    <script src="js/random-emoji.js "></script>
+    <script src="js/tooldisplay.js "></script>
 </body>
 
 </html>
