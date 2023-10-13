@@ -1,135 +1,145 @@
-body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-.hidden {
-    display: none;
-}
-
-#emoji-face-btn {
-    font-size: 3rem;
-    transition: .1s;
-    filter: grayscale(1);
-    border: none;
-    cursor: pointer;
-}
-
-#emoji-face-btn:hover {
-    font-size: 3rem;
-    transform: scale(1.2);
-    filter: grayscale(0);
-}
-
-#emoji-hand-btn {
-    font-size: 3rem;
-    transition: .1s;
-    filter: grayscale(1);
-    border: none;
-    cursor: pointer;
-}
-
-#emoji-hand-btn:hover {
-    font-size: 3rem;
-    transform: scale(1.2);
-    filter: grayscale(0);
-}
-
-#emoji-cute-btn {
-    font-size: 3rem;
-    transition: .1s;
-    filter: grayscale(1);
-    border: none;
-    cursor: pointer;
-}
-
-#emoji-cute-btn:hover {
-    font-size: 3rem;
-    transform: scale(1.2);
-    filter: grayscale(0);
-}
-
-#color-btn {
-    width: 50px;
-    height: 50px;
-    line-height: 45px;
-    background: #ffac00;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 11px;
-    margin: 10px;
-    cursor: pointer;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)
-}
-
-#color-btn:hover {
-    transform: scale(1.2);
-}
-
-a {
-    color: #8b939c;
-}
-
-em {
-    color: #8b939c;
-}
-
-footer {
-    font-size: 12px;
-    color: #8b939c;
-}
-
-button {
-    background: #e0e0e0;
-    color: #8b939c;
-    width: 50px;
-    height: 50px;
-    font-size: 13px;
-    cursor: pointer;
-    margin: 4px;
-    border-radius: 50%;
-    height: 50px;
-    outline: none;
-    border: 0px;
-}
-
-button:hover {
-    background: #b4b7ba;
-    color: #e0e0e0;
-}
-
-button:active {
-    outline: none;
-    border: 0px;
-}
-
-button:focus {
-    outline: none;
-    border: 0px;
-}
-
-.toggle-content {
-    display: none;
-}
-
-.toggle-content.active {
-    display: block;
-}
-
-.toggle-button.active {
-    outline-style: solid;
-    outline-offset: -5px;
-    outline-color: #ffffff;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
+    .hidden {
+        display: none;
+    }
+    
+    #emoji-face-btn {
+        font-size: 3rem;
+        transition: .1s;
+        filter: grayscale(1);
+        border: none;
+        cursor: pointer;
+    }
+    
+    #emoji-face-btn:hover {
+        font-size: 3rem;
+        transform: scale(1.2);
+        filter: grayscale(0);
+    }
+    
+    #emoji-hand-btn {
+        font-size: 3rem;
+        transition: .1s;
+        filter: grayscale(1);
+        border: none;
+        cursor: pointer;
+    }
+    
+    #emoji-hand-btn:hover {
+        font-size: 3rem;
+        transform: scale(1.2);
+        filter: grayscale(0);
+    }
+    
+    #emoji-cute-btn {
+        font-size: 3rem;
+        transition: .1s;
+        filter: grayscale(1);
+        border: none;
+        cursor: pointer;
+    }
+    
+    #emoji-cute-btn:hover {
+        font-size: 3rem;
+        transform: scale(1.2);
+        filter: grayscale(0);
+    }
+    
+    #color-btn {
+        width: 50px;
+        height: 50px;
+        line-height: 45px;
+        background: #ffac00;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 11px;
+        margin: 10px;
+        cursor: pointer;
+        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)
+    }
+    
+    #color-btn:hover {
+        transform: scale(1.2);
+    }
+    
+    a {
+        color: #8b939c;
+    }
+    
+    em {
+        color: #8b939c;
+    }
+    
+    footer {
+        font-size: 12px;
+        color: #8b939c;
+    }
+    
+    button {
+        background: #e0e0e0;
+        color: #8b939c;
+        width: 50px;
+        height: 50px;
+        font-size: 13px;
+        cursor: pointer;
+        margin: 4px;
+        border-radius: 50%;
+        height: 50px;
+        outline: none;
+        border: 0px;
+    }
+    
+    button:hover {
+        background: #b4b7ba;
+        color: #e0e0e0;
+    }
+    
+    button:active {
+        outline: none;
+        border: 0px;
+    }
+    
+    button:focus {
+        outline: none;
+        border: 0px;
+    }
+    
+    .toggle-content {
+        display: none;
+    }
+    
+    .toggle-content.active {
+        display: block;
+    }
+    
+    .toggle-button.active {
+        outline-style: solid;
+        outline-offset: -5px;
+        outline-color: #ffffff;
+    }
+    
+    .emoji {
+        display: inline-block;
+        margin: 5px;
+        cursor: pointer;
+    }
+    
+    .emoji-category {
+        margin-top: 20px;
+        font-weight: bold;
+    }

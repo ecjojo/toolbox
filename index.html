@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <link rel="stylesheet" href="styles.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,6 +22,8 @@
     <script src="js/preview.js"></script>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
 
 </head>
@@ -42,10 +45,11 @@
                 <button class="toggle-button">👌</button>
                 <button class="toggle-button">ᴄᴏʟᴏʀ</button>
                 <button class="toggle-button">ꜰᴏɴᴛ</button>
+                <button class="toggle-button">ᴇᴍᴏᴊɪ</button>
 
             </div>
             <div class="content-container">
-                <!-- /div5/ -->
+                <!-- /div/ -->
                 <div class="toggle-content active">
                     <hr/>
                     <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴇᴍᴏᴊɪ</h5>
@@ -60,7 +64,7 @@
                     </div>
                     <br>
                 </div>
-                <!-- /div1/ -->
+                <!-- /div/ -->
                 <div class="toggle-content">
                     <hr/>
                     <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ꜰᴀᴄᴇ</h5>
@@ -75,7 +79,7 @@
                     </div>
                     <br>
                 </div>
-                <!-- /div2/ -->
+                <!-- /div/ -->
                 <div class="toggle-content">
                     <hr/>
                     <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ʜᴀɴᴅ</h5>
@@ -90,7 +94,7 @@
                     </div>
                     <br>
                 </div>
-                <!-- /div3/ -->
+                <!-- /div/ -->
                 <div class="toggle-content">
                     <hr/>
                     <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴄᴏʟᴏʀ</h5>
@@ -107,22 +111,31 @@
                     </div>
                     <br>
                 </div>
-                <!-- /div4/ -->
+                <!-- /div/ -->
                 <div class="toggle-content">
                     <hr/>
                     <h5 style="text-align:center; ">ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
                     <br>
 
-                    <textarea type="text " class="form-control fancytext " style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required " name="text " placeholder="Type or paste text here.. " value=" "></textarea>
-                    <br />
+                    <textarea type="text" class="form-control fancytext " style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required " name="text" placeholder="Type or paste text here.. " value=" "></textarea>
+                    <br/>
 
-                    <div id="result ">
+                    <div id="result">
                         <div class="input-group mb-3 "><input type="text " class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
                             <div class="input-group-append ">
                                 <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
                             </span>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!-- /div/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ᴇᴍᴏᴊɪ ʙᴏᴏᴋ</h5>
+                    <br>
+                    <div id="emoji-book">
+
                     </div>
                 </div>
                 <!-- // -->
@@ -166,6 +179,7 @@
     <script src="js/random-emoji.js "></script>
     <script src="js/random-sentence.js "></script>
     <script src="js/tooldisplay.js "></script>
+    <script src="js/all-emoji.js "></script>
 
 </body>
 
