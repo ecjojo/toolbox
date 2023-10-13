@@ -1,11 +1,11 @@
-const btnSound2 = new Audio('sounds/button-fx.mp3');
+const btnSound_color = new Audio('sounds/button-fx.mp3');
 
 const colorBtn = document.getElementById("color-btn");
 const colorName = document.getElementById("color-name");
 
 // button click event
 colorBtn.addEventListener("click", () => { 
-  btnSound2.play();
+  btnSound_color.play();
     for(let i=0;i<5;i++){
       setTimeout(function() {
         colorGen();
