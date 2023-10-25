@@ -3119,19 +3119,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       // CRAZY TEXT
       function fullCrazy(text) {
           if (text.trim() === "") return "";
