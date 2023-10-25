@@ -1,6 +1,6 @@
 // 定義一個陣列包含多個句子
 var sentences = [
-    "What time is it?"
+    ""
   ];
   
   // 在網頁載入時執行的函數

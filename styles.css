@@ -17,34 +17,7 @@
     .hidden {
         display: none;
     }
-    
-    #emoji-face-btn {
-        font-size: 3rem;
-        transition: .1s;
-        filter: grayscale(1);
-        border: none;
-        cursor: pointer;
-    }
-    
-    #emoji-face-btn:hover {
-        font-size: 3rem;
-        transform: scale(1.2);
-        filter: grayscale(0);
-    }
-    
-    #emoji-hand-btn {
-        font-size: 3rem;
-        transition: .1s;
-        filter: grayscale(1);
-        border: none;
-        cursor: pointer;
-    }
-    
-    #emoji-hand-btn:hover {
-        font-size: 3rem;
-        transform: scale(1.2);
-        filter: grayscale(0);
-    }
+
     
     #emoji-cute-btn {
         font-size: 3rem;
@@ -135,7 +108,7 @@
     
     .emoji {
         display: inline-block;
-        margin: 5px;
+        margin: 4px;
         cursor: pointer;
     }
     
