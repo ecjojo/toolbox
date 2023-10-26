@@ -1,0 +1,1 @@
+const symbolContainer = document.getElementById("symbol-book");
