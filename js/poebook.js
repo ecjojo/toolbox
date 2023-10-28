@@ -1,1 +1,0 @@
-const poebotContainer = document.getElementById("symbol-book");

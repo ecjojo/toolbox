@@ -35,25 +35,25 @@
             <b>🧰ʜᴇɪᴜᴍᴇ ᴛᴏᴏʟʙᴏx</b>
 
             <p>
-                <a style="font-size: 14px" href="https://discord.gg/8Zzf2BSJXd" target="_blank">ᴊᴏɪɴ ᴍʏ ᴅɪꜱᴄᴏʀᴅ: </a>
-                <a style="font-size: 16px" href="https://discord.gg/8Zzf2BSJXd" target="_blank">ʜᴇɪᴜᴍᴇ ꜱᴛᴜᴅɪᴏ</a>
-                
+                <a style="font-size: 14px" href="https://discord.gg/8Zzf2BSJXd" target="_blank">
+                    ᴊᴏɪɴ ᴍʏ ᴅɪꜱᴄᴏʀᴅ: ʜᴇɪᴜᴍᴇ ꜱᴛᴜᴅɪᴏ</a>
+
 
             </p>
 
             <hr/>
             <div style="display: flex; justify-content: center; ">
-                <button class="toggle-button active">🌷</button>
+                <button class="toggle-button ">🌷</button>
                 <button class="toggle-button">ᴄᴏʟᴏʀ</button>
                 <button class="toggle-button">ꜰᴏɴᴛ</button>
+                <button class="toggle-button">ᴄᴏɴᴠᴇʀᴛ</button>
                 <button class="toggle-button">ᴇᴍᴏᴊɪ</button>
                 <button class="toggle-button">ꜱʏᴍʙᴏʟ</button>
-                <button class="toggle-button">ᴘᴏᴇ</button>
 
             </div>
-            <div class="content-container">
+            <div class="content-container active">
                 <!-- /div/ -->
-                <div class="toggle-content active">
+                <div class="toggle-content">
                     <hr/>
                     <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴇᴍᴏᴊɪ</h5>
                     <br>
@@ -91,14 +91,34 @@
                     <h5 style="text-align:center; ">ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
                     <br>
 
-                    <textarea type="text" class="form-control fancytext " style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required " name="text" placeholder="Type or paste text here.. " value=" "></textarea>
+                    <textarea type="text" class="form-control fancytext" style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff " required="required " name="text" placeholder="Type or paste text here.. " value=" "></textarea>
                     <br/>
 
                     <div id="result">
-                        <div class="input-group mb-3 "><input type="text " class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
+                        <div class="input-group mb-3 ">
+                            <input type="text" class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8" readonly="readonly ">
                             <div class="input-group-append ">
                                 <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
                             </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /div/ -->
+                <div class="toggle-content">
+                    <hr/>
+                    <h5 style="text-align:center; ">ᴄᴏɴᴠᴇʀᴛᴏʀ</h5>
+                    <br>
+                    <div style="display: flex;">
+                        <textarea id="convertor-input" class="form-control" style="width:80%; margin-top:5px; background-color:#333333 !important; color:#ffffff" required="required" name="text" placeholder="Type or paste text here..." value=""></textarea>
+                        <input id="convertor-rule" class="form-control" style="width:20%; margin-top:5px; background-color:#333333 !important; color:#ffffff" required="required" name="text" placeholder="" value=""></input>
+                    </div>
+                    <br/>
+                    <div id="">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="convertor" readonly="readonly" value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ">
+                            <div class="input-group-append">
+                                <span class="input-group-text copybutton" style="cursor:pointer;" data-clipboard-action="copy" data-clipboard-target="#convertor">Copy</span>
                             </div>
                         </div>
                     </div>
@@ -119,12 +139,6 @@
                 <!-- /div/ -->
                 <div class="toggle-content">
                     <div id="symbol-book">
-
-                    </div>
-                </div>
-                 <!-- /div/ -->
-                <div class="toggle-content">
-                    <div id="poe-book">
 
                     </div>
                 </div>
@@ -171,7 +185,7 @@
     <script src="js/tooldisplay.js "></script>
     <script src="js/emojibook.js "></script>
     <script src="js/symbolbook.js "></script>
-    <script src="js/poebook.js "></script>
+    <script src="js/convertor.js "></script>
 
 </body>
 
