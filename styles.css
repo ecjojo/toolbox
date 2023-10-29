@@ -17,7 +17,6 @@
     .hidden {
         display: none;
     }
-
     
     #emoji-cute-btn {
         font-size: 3rem;
@@ -116,7 +115,14 @@
         margin-top: 20px;
         font-weight: bold;
     }
-
-    .poebot-box{
-        
+    
+    .symbol {
+        display: inline-block;
+        margin: 4px;
+        cursor: pointer;
+    }
+    
+    .symbol-category {
+        margin-top: 20px;
+        font-weight: bold;
     }

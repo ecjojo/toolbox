@@ -11,9 +11,9 @@ covertText.addEventListener('input', convertText);
 // 转换函数
 function convertText() {
   const text = inputText.value;  // 获取文本框的值
-  const convertedText = addDelimiter(text);  // 使用指定的分隔符进行转换
-  const trimmedText = convertedText.replace(/\s/g, '');  // 移除空白格
-  previewText.value = trimmedText !== '' ? trimmedText : originalPreviewText;  // 如果转换后的文本为空，则保留原始的预览文本
+  const trimmedText = text.replace(/\s/g, '');  // 移除空白格
+  const convertedText = addDelimiter(trimmedText);  // 使用指定的分隔符进行转换
+  previewText.value = convertedText !== '' ? convertedText : originalPreviewText;  // 如果转换后的文本为空，则保留原始的预览文本
 }
 
 // 使用指定的分隔符进行转换的函数
