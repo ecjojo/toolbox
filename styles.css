@@ -130,7 +130,8 @@
     
     .emoji-category {
         margin-top: 20px;
-        font-style: bold;      
+        font-style: bold;     
+        font-family: Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji"; 
     }
     
     .symbol {

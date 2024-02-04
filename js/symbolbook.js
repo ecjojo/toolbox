@@ -108,6 +108,8 @@ const symbols = [
     // Add more categories and symbols here
   ];
 
+  const countOfSymbols = 36;
+
 function updateSymbolContainer() {
     symbolContainer.innerHTML = "";
   recentSymbolContainer.innerHTML = "";
@@ -120,7 +122,7 @@ function updateSymbolContainer() {
   }
 
   // 預設 symbol
-  const defaultsymbolCount = Math.min(21 - recentSymbols.length, defaultSymbols.length);
+  const defaultsymbolCount = Math.min(countOfSymbols - recentSymbols.length, defaultSymbols.length);
   for (let i = 0; i < defaultsymbolCount; i++) {
     const symbolItem = defaultSymbols[i];
     const symbolElement = createSymbolElement(symbolItem);
@@ -173,7 +175,7 @@ function updateRecentsymbols(symbolItem) {
     recentSymbols.splice(symbolIndex, 1);
   }
   recentSymbols.unshift(symbolItem);
-  if (recentSymbols.length > 21) {
+  if (recentSymbols.length > countOfSymbols) {
     recentSymbols.pop();
   }
   localStorage.setItem("recentsymbols", JSON.stringify(recentSymbols));
