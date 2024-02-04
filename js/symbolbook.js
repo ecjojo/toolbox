@@ -105,8 +105,6 @@ const symbols = [
         symbols: ['㊊','㊋','㊌','㊍','㊎','㊏','㊐','㊑','㊒','㊓','㊔','㊕','㊖','㊗','㊘','㊙','㊚','㊛','㊜','㊝','㊞','㊟','㊠','㊡','㊢','㊣','㊤','㊥','㊦','㊧','㊨','㊩','㊪','㊫','㊬','㊭','㊮','㊯','㊰','ㄅ','ㄆ','ㄇ','ㄈ','ㄉ','ㄊ','ㄋ','ㄌ','ㄍ','ㄎ','ㄏ','ㄐ','ㄑ','ㄒ','ㄓ','ㄔ','ㄕ','ㄖ','ㄗ','ㄘ','ㄙ','ㄚ','ㄛ','ㄜ','ㄝ','ㄞ','ㄟ','ㄠ','ㄡ','ㄢ','ㄣ','ㄤ','ㄥ','ㄦ','ㄧ','ㄨ','ㄩ','ㄪ','ㄬ','ㄫ','¯','ˊ','ˇ','ˋ','˙']
       }
 
-
-
     // Add more categories and symbols here
   ];
 
@@ -122,7 +120,7 @@ function updateSymbolContainer() {
   }
 
   // 預設 symbol
-  const defaultsymbolCount = Math.min(11 - recentSymbols.length, defaultSymbols.length);
+  const defaultsymbolCount = Math.min(21 - recentSymbols.length, defaultSymbols.length);
   for (let i = 0; i < defaultsymbolCount; i++) {
     const symbolItem = defaultSymbols[i];
     const symbolElement = createSymbolElement(symbolItem);
@@ -175,7 +173,7 @@ function updateRecentsymbols(symbolItem) {
     recentSymbols.splice(symbolIndex, 1);
   }
   recentSymbols.unshift(symbolItem);
-  if (recentSymbols.length > 11) {
+  if (recentSymbols.length > 21) {
     recentSymbols.pop();
   }
   localStorage.setItem("recentsymbols", JSON.stringify(recentSymbols));

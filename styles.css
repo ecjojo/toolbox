@@ -1,3 +1,4 @@
+  
     body {
         margin: 0;
         padding: 0;
@@ -5,6 +6,7 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
+        
     }
     
     .container {
@@ -27,6 +29,20 @@
     }
     
     #emoji-cute-btn:hover {
+        font-size: 3rem;
+        transform: scale(1.2);
+        filter: grayscale(0);
+    }
+
+    #emoji-yesno-btn {
+        font-size: 3rem;
+        transition: .1s;
+        filter: grayscale(1);
+        border: none;
+        cursor: pointer;
+    }
+    
+    #emoji-yesno-btn:hover {
         font-size: 3rem;
         transform: scale(1.2);
         filter: grayscale(0);
@@ -109,17 +125,20 @@
         display: inline-block;
         margin: 4px;
         cursor: pointer;
+        font-family: Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji";
     }
     
     .emoji-category {
         margin-top: 20px;
-        font-weight: bold;
+        font-style: bold;      
     }
     
     .symbol {
         display: inline-block;
         margin: 4px;
         cursor: pointer;
+        font-family: "Noto Emoji", sans-serif;
+        font-optical-sizing: auto;
     }
     
     .symbol-category {

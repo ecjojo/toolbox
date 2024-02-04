@@ -3,8 +3,13 @@ const btnSound = new Audio('sounds/button-fx.mp3');
 // const emojifaceBtn = document.getElementById("emoji-face-btn");
 // const emojihandBtn = document.getElementById("emoji-hand-btn");
 const emojicuteBtn = document.getElementById("emoji-cute-btn");
+const emojiyesnoBtn = document.getElementById("emoji-yesno-btn");
 
 // Get emojis from https://emojipedia.org/
+
+const emojiyesno = [
+  '⭕','❌'
+];
 
 const emojifaces = [
   '😀','😃','😄','😁','😆','😅','🤣','😂','🙂','🙃',
@@ -63,6 +68,16 @@ emojicuteBtn.addEventListener("click", () => {
     for(let i=0;i<7;i++){
       setTimeout(function() {
         emojicuteBtn.innerText = emojicutes[Math.floor(Math.random() * emojicutes.length)];
+   }, 100 * i)
+   }
+});
+
+emojiyesnoBtn.addEventListener("click", () => { 
+  btnSound.play();
+  emojiyesnoBtn.style = "filter: grayscale(0);";
+    for(let i=0;i<7;i++){
+      setTimeout(function() {
+        emojiyesnoBtn.innerText = emojiyesno[Math.floor(Math.random() * emojiyesno.length)];
    }, 100 * i)
    }
 });
