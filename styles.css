@@ -146,3 +146,44 @@
         margin-top: 20px;
         font-weight: bold;
     }
+
+    body.dark-mode {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    
+    .dark-mode a,
+    .dark-mode em,
+    .dark-mode footer {
+        color: #b0b0b0;
+    }
+    
+    .dark-mode button {
+        background: #2a2a2a;
+        color: #ccc;
+    }
+    
+    .dark-mode button:hover {
+        background: #444;
+        color: #fff;
+    }
+    
+    .dark-mode #emoji-cute-btn,
+    .dark-mode #emoji-yesno-btn {
+        filter: grayscale(0.8);
+    }
+    
+    .dark-mode #emoji-cute-btn:hover,
+    .dark-mode #emoji-yesno-btn:hover {
+        filter: grayscale(0);
+    }
+    
+    .dark-mode #color-btn {
+        background: #ffc400;
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+    }
+    
+    .dark-mode .toggle-button.active {
+        outline-color: #aaa;
+    }
+    
