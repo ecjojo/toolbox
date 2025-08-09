@@ -3,37 +3,28 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="ecjojo toolbox">
     <meta property="og:type" content="website">
-
     <title>toolbox</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    <!-- 臨時加回，確保 i.fa 圖示顯示，之後再移除改 SVG -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="styles.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script src="js/clipboard.js"></script>
-    <script src="js/fonts.js"></script>
-    <script src="js/preview.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
-
 </head>
+
 
 <body>
     <div style="display: flex; justify-content: center; ">
@@ -199,13 +190,13 @@
             <div class="container ">
                 <div>
 
-                    <a style="padding: 2px " href="https://twitter.com/ecjojo_ai "
+                    <a style="padding: 2px " href="https://twitter.com/ecjojoDEV "
                         onmouseover="this.style.color='#56A2E8' ; " onmouseout="this.style.color='#8b939c' ; ">
                         <i class="fa fa-twitter fa-lg " aria-hidden="true "></i>
                     </a>
 
 
-                    <a style="padding: 2px " href="https://www.youtube.com/@_ecjojo "
+                    <a style="padding: 2px " href="https://www.youtube.com/@ecjojoDEV "
                         onmouseover="this.style.color='#E85656' ; " onmouseout="this.style.color='#8b939c' ; ">
                         <i class="fa fa-youtube-play fa-lg " aria-hidden="true "></i>
                     </a>
@@ -215,12 +206,12 @@
                         <i class="fa fa-github fa-lg " aria-hidden="true "></i>
                     </a>
 
-                    <a style="padding: 2px " href="https://discord.gg/brUbYQuETg "
+                    <a style="padding: 2px " href="https://discord.gg/2uFuM9UjEJ"
                         onmouseover="this.style.color='#7470DD ' ; " onmouseout="this.style.color='#8b939c' ; ">
                         <i class="fa fa-comments fa-lg " aria-hidden="true "></i>
                     </a>
 
-                    <a style="padding: 2px " href="https://www.linkedin.com/in/ec-j-0095a952/"
+                    <a style="padding: 2px " href="https://www.linkedin.com/in/ecjojo/"
                         onmouseover="this.style.color='#0077B5' ; " onmouseout="this.style.color='#8b939c' ; ">
                         <i class=" fa fa-linkedin fa-lg " aria-hidden="true "></i>
                     </a>
@@ -232,16 +223,25 @@
                     studio</a></footer>
         </div>
     </div>
-    </div>
-    <script src="js/copybutton.js "></script>
-    <script src="js/random-emoji.js "></script>
-    <script src="js/random-sentence.js "></script>
-    <script src="js/tooldisplay.js "></script>
-    <script src="js/emojibook.js "></script>
-    <script src="js/symbolbook.js "></script>
-    <script src="js/convertor.js "></script>
+    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJ+Y2k3t5R3t3rj7Q8v7RkW3pQXQFh7P6w5r0=" crossorigin="anonymous"></script>
 
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8Z4l1hb7xZ1nE2QFj1J5nq8vb5UK0Zl2Q5y"
+        crossorigin="anonymous"></script>
 
+    <!-- 本地腳本 -->
+    <script defer src="js/clipboard.js"></script>
+    <script defer src="js/fonts.js"></script>
+    <script defer src="js/preview.js"></script>
+    <script defer src="js/random-color.js"></script>
+    <script defer src="js/copybutton.js"></script>
+    <script defer src="js/random-emoji.js"></script>
+    <script defer src="js/random-sentence.js"></script>
+    <script defer src="js/tooldisplay.js"></script>
+    <script defer src="js/emojibook.js"></script>
+    <script defer src="js/symbolbook.js"></script>
+    <script defer src="js/convertor.js"></script>
 </body>
 
 </html>
