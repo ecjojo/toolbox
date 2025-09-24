@@ -1,247 +1,218 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-Hant">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="ecjojo toolbox">
-    <meta property="og:type" content="website">
-    <title>toolbox</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="ecjojo toolbox" />
+    <meta name="description" content="Emoji, symbols, cute fonts toolkit by ecjojo." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ecjojo toolbox" />
+    <meta property="og:description" content="Emoji book, symbol book, cute font generator." />
+    <title>ecjojo toolbox</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-    <!-- 臨時加回，確保 i.fa 圖示顯示，之後再移除改 SVG -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <!-- App CSS -->
     <link rel="stylesheet" href="styles.css">
 
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧰</text></svg>">
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" />
 </head>
 
-
 <body>
-    <div style="display: flex; justify-content: center; ">
-        <div style="margin: 40px; align-items: center; justify-content: center;">
-
-            <b>🧰ᴛᴏᴏʟʙᴏx</b>
-
-
-            <hr />
-            <div style="display: flex; justify-content: center; 
-             align-items: center;">
-                <div style="display: inline-block;">
-
-
-                    <button class="toggle-button">ᴇᴍᴏᴊɪ</button>
-                    <button class="toggle-button">ꜱʏᴍʙᴏʟ</button>
-                    <button class="toggle-button ">⭕</button>
-                    <button class="toggle-button ">🌷</button>
-                    <button class="toggle-button">ᴄᴏʟᴏʀ</button>
-                    <button class="toggle-button">ꜰᴏɴᴛ</button>
-                    <button class="toggle-button">ᴄᴏɴᴠᴇʀᴛ</button>
-
-                </div>
+    <main class="page-wrap" role="main">
+        <section class="card-shell" aria-label="toolbox">
+            <div class="brand-title">
+                <b>🧰 ᴛᴏᴏʟʙᴏx</b>
             </div>
 
-            <div class="content-container active">
-                <!-- /div/ -->
+            <hr />
 
-                <div class="toggle-content">
+            <!-- Toolbar / Tabs (only: ᴇᴍᴏᴊɪ / ꜱʏᴍʙᴏʟ / ꜰᴏɴᴛ) -->
+            <div class="toolbar" role="tablist" aria-label="工具切換">
+                <button type="button" class="toggle-button" role="tab" aria-selected="true"
+                    aria-pressed="true">ᴇᴍᴏᴊɪ</button>
+                <button type="button" class="toggle-button" role="tab" aria-selected="false"
+                    aria-pressed="false">ꜱʏᴍʙᴏʟ</button>
+                <button type="button" class="toggle-button" role="tab" aria-selected="false"
+                    aria-pressed="false">ꜰᴏɴᴛ</button>
+            </div>
+
+            <!-- Panels -->
+            <div class="content-container">
+                <!-- Emoji Book -->
+                <section class="toggle-content active" role="tabpanel" aria-label="emoji book">
                     <hr />
-                    <h5 style="text-align:center; ">ᴇᴍᴏᴊɪ ʙᴏᴏᴋ⁵</h5>
-                    <br>
-                    <div id="recent-emojis">
-                    </div>
-                    <div id="emoji-book">
+                    <h5 class="section-title">ᴇᴍᴏᴊɪ ʙᴏᴏᴋ⁵</h5>
+                    <div id="recent-emojis" aria-live="polite"></div>
+                    <div id="emoji-book"></div>
+                </section>
 
-                    </div>
-                </div>
-                <!-- /div/ -->
-                <div class="toggle-content">
-
+                <!-- Symbol Book -->
+                <section class="toggle-content" role="tabpanel" aria-label="symbol book">
                     <hr />
-                    <h5 style="text-align:center; ">ꜱʏᴍʙᴏʟ ʙᴏᴏᴋ</h5>
-                    <br>
+                    <h5 class="section-title">ꜱʏᴍʙᴏʟ ʙᴏᴏᴋ</h5>
+                    <div id="recent-symbols" aria-live="polite"></div>
+                    <div id="symbol-book"></div>
+                </section>
 
-                    <div id="recent-symbols">
-
-                    </div>
-
-                    <div id="symbol-book">
-
-                    </div>
-                </div>
-                <!-- /div/ -->
-                <div class="toggle-content">
+                <!-- Cute Font Generator -->
+                <section class="toggle-content" role="tabpanel" aria-label="cute font generator">
                     <hr />
-                    <h5 style="text-align:center; ">ʏᴇꜱ / ɴᴏ</h5>
-                    <br>
-                    <div class="container ">
-                        <span id='emoji-yesno-btn'>⭕</span>
-                        <br>
-                    </div>
-                    <br>
-                </div>
-                <!-- /div/ -->
-                <div class="toggle-content">
-                    <hr />
-                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴇᴍᴏᴊɪ</h5>
-                    <br>
-                    <div class="container ">
+                    <h5 class="section-title">ᴄᴜᴛᴇ ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
 
-                        <span id='emoji-cute-btn'>🌷</span>
+                    <!-- 輸入框 -->
+                    <textarea class="form-control dark-textarea fancytext" rows="3"
+                        placeholder="Type or paste text here..." autocomplete="off" autocapitalize="off"
+                        spellcheck="false" aria-label="Input text to convert into cute font"></textarea>
 
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy"
-                            data-clipboard-target="#emoji-cute-btn">Copy
-                        </span>
-
-                    </div>
-                    <br>
-                </div>
-                <!-- /div/ -->
-
-                <div class="toggle-content">
-                    <hr />
-                    <h5 style="text-align:center; ">ʀᴀɴᴅᴏᴍ ᴄᴏʟᴏʀ</h5>
-                    <br>
-                    <div class="container">
-
-                        <span id='color-btn'><span id='color-name'>#ffac00</span>
-                        </span>
-
-                        <script src="js/random-color.js "></script>
-
-                        <span class="input-group-text copybutton " style="cursor:pointer; " data-clipboard-action="copy"
-                            data-clipboard-target="#color-name">Copy
-                        </span>
-
-                    </div>
-                    <br>
-                </div>
-                <!-- /div/ -->
-                <div class="toggle-content">
-                    <hr />
-                    <h5 style="text-align:center; ">ᴄᴜᴛᴇ ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
-                    <br>
-
-                    <textarea type="text" class="form-control fancytext"
-                        style="width:100%; margin-top:5px; background-color:#333333 !important; color:#ffffff "
-                        required="required " name="text" placeholder="Type or paste text here.. " value=" "></textarea>
-                    <br />
-
-                    <div id="result">
-                        <div class="input-group mb-3 ">
-                            <input type="text" class="form-control text-9 " value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ " id="copy_8"
-                                readonly="readonly ">
-                            <div class="input-group-append ">
-                                <span class="input-group-text copybutton " style="cursor:pointer; "
-                                    data-clipboard-action="copy" data-clipboard-target="#copy_8">Copy
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /div/ -->
-                <div class="toggle-content">
-                    <hr />
-                    <h5 style="text-align:center; ">ᴛᴇxᴛ ꜰᴏʀᴍᴀᴛᴏʀ</h5>
-                    <br>
-
-                    <p style="font-size: 12px; text-align:center;">
-                        ⭐ ʀᴇᴍᴏᴠᴇ ᴀʟʟ ᴡʜɪᴛᴇꜱᴘᴀᴄᴇ
-                        ⭐ ᴀᴅᴅ ꜱʏᴍʙᴏʟ
-                        ⭐ ᴄᴏᴘʏ</p>
-
-
-
-                    <div style="display: flex;">
-                        <textarea id="convertor-input" class="form-control"
-                            style="width:80%; margin-top:5px; background-color:#333333 !important; color:#ffffff"
-                            required="required" name="text" placeholder="Type or paste text here..."
-                            value=""></textarea>
-                        <input id="convertor-rule" class="form-control"
-                            style="width:20%; margin-top:5px; background-color:#333333 !important; color:#ffffff"
-                            required="required" name="text" placeholder="" value=""></input>
-                    </div>
-                    <br />
-                    <div id="">
+                    <!-- 預覽與複製 -->
+                    <div id="result" class="mt-3">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="convertor" readonly="readonly"
-                                value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ">
+                            <input type="text" class="form-control dark-input text-9" id="copy_8" value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ"
+                                readonly aria-live="polite">
                             <div class="input-group-append">
-                                <span class="input-group-text copybutton" style="cursor:pointer;"
-                                    data-clipboard-action="copy" data-clipboard-target="#convertor">Copy</span>
+                                <button type="button" class="input-group-text copybutton" data-clipboard-action="copy"
+                                    data-clipboard-target="#copy_8" aria-label="Copy converted text">
+                                    Copy
+                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
+                </section>
 
 
-                <!-- /div/ -->
             </div>
+
             <hr />
-            <div class="container ">
-                <div>
 
-                    <a style="padding: 2px " href="https://twitter.com/ecjojoDEV "
-                        onmouseover="this.style.color='#56A2E8' ; " onmouseout="this.style.color='#8b939c' ; ">
-                        <i class="fa fa-twitter fa-lg " aria-hidden="true "></i>
-                    </a>
-
-
-                    <a style="padding: 2px " href="https://www.youtube.com/@ecjojoDEV "
-                        onmouseover="this.style.color='#E85656' ; " onmouseout="this.style.color='#8b939c' ; ">
-                        <i class="fa fa-youtube-play fa-lg " aria-hidden="true "></i>
-                    </a>
-
-                    <a style="padding: 2px " href="https://github.com/ecjojo "
-                        onmouseover="this.style.color='#B65CE5 ' ; " onmouseout="this.style.color='#8b939c' ; ">
-                        <i class="fa fa-github fa-lg " aria-hidden="true "></i>
-                    </a>
-
-                    <a style="padding: 2px " href="https://discord.gg/2uFuM9UjEJ"
-                        onmouseover="this.style.color='#7470DD ' ; " onmouseout="this.style.color='#8b939c' ; ">
-                        <i class="fa fa-comments fa-lg " aria-hidden="true "></i>
-                    </a>
-
-                    <a style="padding: 2px " href="https://www.linkedin.com/in/ecjojo/"
-                        onmouseover="this.style.color='#0077B5' ; " onmouseout="this.style.color='#8b939c' ; ">
-                        <i class=" fa fa-linkedin fa-lg " aria-hidden="true "></i>
-                    </a>
-                </div>
-
+            <!-- Socials -->
+            <div class="container text-center">
+                <nav class="socials" aria-label="social links">
+                    <a href="https://twitter.com/ecjojoDEV" aria-label="Twitter" data-hover="twitter"><i
+                            class="fa fa-twitter fa-lg" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
+                    <a href="https://www.youtube.com/@ecjojoDEV" aria-label="YouTube" data-hover="youtube"><i
+                            class="fa fa-youtube-play fa-lg" aria-hidden="true"></i><span
+                            class="sr-only">YouTube</span></a>
+                    <a href="https://github.com/ecjojo" aria-label="GitHub" data-hover="github"><i
+                            class="fa fa-github fa-lg" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
+                    <a href="https://discord.gg/2uFuM9UjEJ" aria-label="Discord" data-hover="discord"><i
+                            class="fa fa-comments fa-lg" aria-hidden="true"></i><span class="sr-only">Discord</span></a>
+                    <a href="https://www.linkedin.com/in/ecjojo/" aria-label="LinkedIn" data-hover="linkedin"><i
+                            class="fa fa-linkedin fa-lg" aria-hidden="true"></i><span
+                            class="sr-only">LinkedIn</span></a>
+                </nav>
             </div>
 
-            <footer style="text-align: center; margin: 20px; ">© 2024 <a href="https://ecjojo.github.io/ ">ecjojo
-                    studio</a></footer>
-        </div>
-    </div>
-    <script defer src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJ+Y2k3t5R3t3rj7Q8v7RkW3pQXQFh7P6w5r0=" crossorigin="anonymous"></script>
+            <footer>© 2024 <a href="https://ecjojo.github.io/">ecjojo studio</a></footer>
+        </section>
+    </main>
 
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8Z4l1hb7xZ1nE2QFj1J5nq8vb5UK0Zl2Q5y"
-        crossorigin="anonymous"></script>
 
-    <!-- 本地腳本 -->
+
+    <!-- Local scripts (kept only needed ones) -->
     <script defer src="js/clipboard.js"></script>
     <script defer src="js/fonts.js"></script>
     <script defer src="js/preview.js"></script>
-    <script defer src="js/random-color.js"></script>
     <script defer src="js/copybutton.js"></script>
-    <script defer src="js/random-emoji.js"></script>
-    <script defer src="js/random-sentence.js"></script>
     <script defer src="js/tooldisplay.js"></script>
-    <script defer src="js/emojibook.js"></script>
-    <script defer src="js/symbolbook.js"></script>
-    <script defer src="js/convertor.js"></script>
+
+
+    <!-- Progressive enhancement for tabs -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const buttons = Array.from(document.querySelectorAll('.toggle-button'));
+            const panels = Array.from(document.querySelectorAll('.toggle-content'));
+
+            function activate(idx) {
+                buttons.forEach((btn, i) => {
+                    const active = i === idx;
+                    btn.setAttribute('aria-selected', active);
+                    btn.setAttribute('aria-pressed', active);
+                });
+                panels.forEach((p, i) => p.classList.toggle('active', i === idx));
+            }
+
+            buttons.forEach((btn, i) => btn.addEventListener('click', () => activate(i)));
+
+            document.querySelector('.toolbar').addEventListener('keydown', (e) => {
+                const current = document.activeElement;
+                const idx = buttons.indexOf(current);
+                if (idx < 0) return;
+                if (e.key === 'ArrowRight') { buttons[(idx + 1) % buttons.length].focus(); }
+                if (e.key === 'ArrowLeft') { buttons[(idx - 1 + buttons.length) % buttons.length].focus(); }
+                if (e.key === 'Home') { buttons[0].focus(); }
+                if (e.key === 'End') { buttons[buttons.length - 1].focus(); }
+                if (e.key === 'Enter' || e.key === ' ') { activate(idx); }
+            });
+        });
+    </script>
+
+    <script type="module">
+  document.addEventListener('DOMContentLoaded', () => {
+    const buttons = Array.from(document.querySelectorAll('.toggle-button'));
+    const panels  = Array.from(document.querySelectorAll('.toggle-content'));
+
+    const loaders = {
+      "emoji book":   () => import('./js/emojibook.js'),
+      "symbol book":  () => import('./js/symbolbook.js'),
+      "cute font generator": () => Promise.resolve(), // 已載入
+    };
+    const loaded = new Set();
+
+  function activate(idx) {
+      // 先對「將要被隱藏」的 Emoji 面板做 unmount（把 DOM 縮小）
+      const currentActive = panels.findIndex(p => p.classList.contains('active'));
+      if (currentActive !== -1) {
+        const currentLabel = panels[currentActive].getAttribute('aria-label');
+        if (currentLabel === 'emoji book' && window.emojiBook?.unmount) {
+          window.emojiBook.unmount();
+        }
+      }
+
+      // 切換 aria / 類
+      buttons.forEach((btn, i) => {
+        const active = i === idx;
+        btn.setAttribute('aria-selected', active);
+        btn.setAttribute('aria-pressed', active);
+      });
+      panels.forEach((p, i) => p.classList.toggle('active', i === idx));
+
+      // Lazy import
+      const label = panels[idx].getAttribute('aria-label');
+      if (!loaded.has(label)) {
+        loaders[label]?.().catch(console.error).finally(() => {
+          loaded.add(label);
+          // 首次載入完如果是 emoji 面板，馬上掛載
+          if (label === 'emoji book' && window.emojiBook?.mount) {
+            window.emojiBook.mount();
+          }
+        });
+      } else {
+        // 已載入過 → 如果是 emoji 面板，切回時馬上掛載
+        if (label === 'emoji book' && window.emojiBook?.mount) {
+          window.emojiBook.mount();
+        }
+      }
+    }
+
+    buttons.forEach((btn, i) => btn.addEventListener('click', () => activate(i)));
+    document.querySelector('.toolbar').addEventListener('keydown', (e) => {
+      const current = document.activeElement;
+      const idx = buttons.indexOf(current);
+      if (idx < 0) return;
+      if (e.key === 'ArrowRight') buttons[(idx + 1) % buttons.length].focus();
+      if (e.key === 'ArrowLeft')  buttons[(idx - 1 + buttons.length) % buttons.length].focus();
+      if (e.key === 'Home')       buttons[0].focus();
+      if (e.key === 'End')        buttons[buttons.length - 1].focus();
+      if (e.key === 'Enter' || e.key === ' ') activate(idx);
+    });
+
+    // 預設第一個面板活化（會觸發對應 lazy ）
+    activate(0);
+  });
+</script>
+
+
 </body>
 
 </html>

@@ -1,148 +1,259 @@
-  
-    body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        
-    }
-    
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    
-    .hidden {
-        display: none;
-    }
-    
-    #emoji-cute-btn {
-        font-size: 3rem;
-        transition: .1s;
-        filter: grayscale(1);
-        border: none;
-        cursor: pointer;
-    }
-    
-    #emoji-cute-btn:hover {
-        font-size: 3rem;
-        transform: scale(1.2);
-        filter: grayscale(0);
-    }
+/* =========================================
+   ecjojo toolbox — Cleaned stylesheet
+   ========================================= */
 
-    #emoji-yesno-btn {
-        font-size: 3rem;
-        transition: .1s;
-        filter: grayscale(1);
-        border: none;
-        cursor: pointer;
-    }
-    
-    #emoji-yesno-btn:hover {
-        font-size: 3rem;
-        transform: scale(1.2);
-        filter: grayscale(0);
-    }
-    
-    #color-btn {
-        width: 50px;
-        height: 50px;
-        line-height: 45px;
-        background: #ffac00;
-        border-radius: 50%;
-        text-align: center;
-        font-size: 11px;
-        margin: 10px;
-        cursor: pointer;
-        box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5)
-    }
-    
-    #color-btn:hover {
-        transform: scale(1.2);
-    }
-    
-    a {
-        color: #8b939c;
-    }
-    
-    em {
-        color: #8b939c;
-    }
-    
-    footer {
-        font-size: 12px;
-        color: #8b939c;
-    }
-    
-    button {
-        background: #e0e0e0;
-        color: #8b939c;
-        width: 50px;
-        height: 50px;
-        font-size: 13px;
-        cursor: pointer;
-        margin: 4px;
-        border-radius: 50%;
-        height: 50px;
-        outline: none;
-        border: 0px;
-    }
-    
-    button:hover {
-        background: #b4b7ba;
-        color: #e0e0e0;
-    }
-    
-    button:active {
-        outline: none;
-        border: 0px;
-    }
-    
-    button:focus {
-        outline: none;
-        border: 0px;
-    }
-    
-    .toggle-content {
-        display: none;
-    }
-    
-    .toggle-content.active {
-        display: block;
-    }
-    
-    .toggle-button.active {
-        outline-style: solid;
-        outline-offset: -5px;
-        outline-color: #ffffff;
-    }
-    
-    .emoji {
-        display: inline-block;
-        margin: 4px;
-        cursor: pointer;
-        font-family: Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji";
-    }
-    
-    .emoji-category {
-        margin-top: 20px;
-        font-style: bold;     
-        font-family: Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji"; 
-    }
-    
-    .symbol {
-        display: inline-block;
-        margin: 4px;
-        cursor: pointer;
-        font-family: "Noto Emoji", sans-serif;
-        font-optical-sizing: auto;
-    }
-    
-    .symbol-category {
-        margin-top: 20px;
-        font-weight: bold;
-    }
+/* ===== Theme ===== */
+:root{
+  --bg:#111417;
+  --panel:#1a1f24;
+  --panel-2:#20262c;
+  --text:#e7edf3;
+  --muted:#8b939c;
+  --brand:#56a2e8;
+  --accent:#b65ce5;
+  --radius:16px;
+}
+
+/* ===== Base ===== */
+html,body{height:100%}
+body{
+  margin:0;
+  padding:0;
+  width:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+a{color:var(--muted);transition:color .2s ease}
+a:hover{color:var(--brand);text-decoration:none}
+hr{border-color:#2c333b}
+
+/* ===== Layout ===== */
+.page-wrap{display:grid;place-items:center;padding:40px 16px}
+.card-shell{
+  width:min(960px,100%);
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border-radius:var(--radius);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  padding:28px 20px 16px;
+}
+.brand-title{
+  display:flex;align-items:center;gap:12px;justify-content:center;
+  font-weight:700;letter-spacing:.06em;text-transform:lowercase
+}
+.brand-title b{font-size:1.25rem}
+
+/* ===== Tabs / Toolbar ===== */
+.toolbar{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.toggle-button{
+  background:#2a3138;color:var(--text);
+  border:1px solid #333b44;border-radius:999px;
+  padding:8px 14px;font-size:12px;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;transition:transform .05s ease,background .15s ease,border-color .15s ease
+}
+.toggle-button:focus{outline:2px solid var(--brand);outline-offset:2px}
+.toggle-button[aria-pressed="true"]{background:#39414a;border-color:#4a5562}
+.toggle-button:active{transform:translateY(1px)}
+
+/* ===== Panels ===== */
+.content-container{margin-top:12px}
+.toggle-content{display:none;content-visibility:auto;contain:content;contain-intrinsic-size:900px 600px}
+.toggle-content.active{display:block}
+.section-title{text-align:center;margin:8px 0 12px}
+
+/* ===== Inputs (global dark) ===== */
+.dark-input,.dark-textarea{
+  background-color:#1a1a1a !important;
+  color:#fff !important;
+  border-color:#40464d !important;
+}
+.copybutton{cursor:pointer}
+
+/* ===== Utilities ===== */
+.hidden{display:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+.text-9{font-size:16px}
+
+/* ===== Interactive hotspots (optional) ===== */
+#emoji-cute-btn,#emoji-yesno-btn{
+  font-size:3rem;transition:.1s;filter:grayscale(1);border:none;cursor:pointer
+}
+#emoji-cute-btn:hover,#emoji-yesno-btn:hover{transform:scale(1.2);filter:grayscale(0)}
+#color-btn{
+  width:50px;height:50px;line-height:45px;background:#ffac00;border-radius:50%;
+  text-align:center;font-size:11px;margin:10px;cursor:pointer;box-shadow:0 0 1px rgba(0,0,0,.5)
+}
+#color-btn:hover{transform:scale(1.2)}
+
+/* ===== Emoji & Symbol ===== */
+/* 容器用 flex，讓排版更省力 */
+#recent-emojis,
+#emoji-book > .emoji-list{display:flex;flex-wrap:wrap;gap:6px}
+
+/* 類別標題 */
+.emoji-category{
+  width:100%;
+  margin:16px 0 6px;
+  font-weight:700;
+  color:var(--muted);
+  font-family:Apple Color Emoji,"Segoe UI Emoji","Noto Color Emoji";
+}
+
+/* 單顆 emoji 作為按鈕 */
+.emoji{
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:Apple Color Emoji,"Segoe UI Emoji","Noto Color Emoji";
+  font-size:22px;line-height:1;user-select:none;cursor:pointer;
+ border-radius:10px;
+  padding:4px 0;min-width:22px;
+  transition:transform .06s ease,filter .1s ease,background .15s ease,border-color .15s ease;
+  will-change:transform;
+  contain:layout paint style;
+}
+.emoji:hover{transform:translateY(-1px);background:#20262c}
+.emoji:active{transform:translateY(0);filter:brightness(1.1)}
+
+/* ===== Cute Font Generator (no Bootstrap dependency) ===== */
+section[aria-label="cute font generator"] .form-control,
+section[aria-label="cute font generator"] .dark-input,
+section[aria-label="cute font generator"] .dark-textarea{
+  width:100%;display:block;
+  background-color:#171a1e;color:var(--text);
+  border:1px solid #2c333b;border-radius:10px;
+  padding:10px 12px;line-height:1.4;font-size:14px;
+  transition:border-color .15s ease,box-shadow .15s ease,background-color .15s ease;
+}
+section[aria-label="cute font generator"] .form-control:focus,
+section[aria-label="cute font generator"] .dark-input:focus,
+section[aria-label="cute font generator"] .dark-textarea:focus{
+  outline:none;border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(86,162,232,.25);
+  background-color:#14181c;
+}
+section[aria-label="cute font generator"] textarea.dark-textarea{resize:vertical;min-height:96px}
+
+/* Input group 外觀（自製） */
+section[aria-label="cute font generator"] .input-group{
+  display:flex;width:100%;align-items:stretch;
+  border-radius:12px;overflow:hidden;
+  background:#171a1e;border:1px solid #2c333b;
+}
+section[aria-label="cute font generator"] .input-group .form-control.dark-input{
+  border:none;border-right:1px solid #2c333b;border-radius:0;background:transparent
+}
+section[aria-label="cute font generator"] .input-group .input-group-append{display:flex}
+section[aria-label="cute font generator"] .input-group .input-group-text,
+section[aria-label="cute font generator"] .copybutton{
+  display:inline-flex;align-items:center;justify-content:center;
+  white-space:nowrap;padding:0 14px;min-width:68px;
+  font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  border:none;background:linear-gradient(180deg,#262c33,#21272d);
+  color:var(--text);cursor:pointer;
+  transition:transform .06s ease,background-color .15s ease,opacity .15s ease;
+}
+section[aria-label="cute font generator"] .input-group .input-group-text:hover,
+section[aria-label="cute font generator"] .copybutton:hover{background:linear-gradient(180deg,#2a3138,#242b32)}
+section[aria-label="cute font generator"] .input-group .input-group-text:active,
+section[aria-label="cute font generator"] .copybutton:active{transform:translateY(1px)}
+section[aria-label="cute font generator"] .input-group .input-group-text:focus-visible,
+section[aria-label="cute font generator"] .copybutton:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+section[aria-label="cute font generator"] #copy_8{font-size:16px;letter-spacing:.02em}
+section[aria-label="cute font generator"] .copybutton{border-left:1px solid #2c333b}
+section[aria-label="cute font generator"] .mt-3{margin-top:1rem}
+section[aria-label="cute font generator"] .mb-3{margin-bottom:1rem}
+section[aria-label="cute font generator"] .form-control::placeholder,
+section[aria-label="cute font generator"] .dark-textarea::placeholder{color:var(--muted);opacity:.65}
+
+/* ===== Socials ===== */
+.socials{display:flex;gap:8px;justify-content:center;align-items:center}
+.socials a{padding:2px;color:var(--muted)}
+.socials a[data-hover="twitter"]:hover{color:#56A2E8}
+.socials a[data-hover="youtube"]:hover{color:#E85656}
+.socials a[data-hover="github"]:hover{color:#B65CE5}
+.socials a[data-hover="discord"]:hover{color:#7470DD}
+.socials a[data-hover="linkedin"]:hover{color:#0077B5}
+
+/* ===== Footer ===== */
+footer{text-align:center;margin:20px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+/* ===== Symbol Book (獨立於 Emoji) ===== */
+
+/* 容器用 flex，與 emoji 相同但選 #symbol-book */
+#recent-symbols,
+#symbol-book > .symbol-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* 類別標題 */
+.symbol-category {
+  width: 100%;
+  margin: 16px 0 6px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+/* 單顆符號卡片 */
+.symbol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* 符號常用的是 Noto Emoji / Symbols，留 fallback */
+  font-family: "Noto Emoji","Segoe UI Symbol","Apple Color Emoji",sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+
+  border-radius: 10px;
+  padding: 8px 0;
+  min-width: 22px;
+
+  transition: transform .06s ease, filter .1s ease, background .15s ease, border-color .15s ease;
+  will-change: transform;
+  contain: layout paint style;
+}
+.symbol:hover { transform: translateY(-1px); background: #20262c; }
+.symbol:active { transform: translateY(0); filter: brightness(1.1); }
+
+/* Emoji 面板 = IO root：可以滾動、可見性優化但保有預估尺寸 */
+section[aria-label="emoji book"]{
+  max-height: 65vh;         /* 或 70vh/600px，重點是要限制高度 */
+  overflow: auto;           /* 真的形成 scrollport */
+  content-visibility: auto; /* 可見時才排版 */
+  contain: content;         /* 隔離影響範圍 */
+  contain-intrinsic-size: 900px 600px; /* 預估尺寸，避免一開始高度為 0 */
+}
+
+
+/* WebKit 瀏覽器 (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1f24; /* 滾動條背景 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3a3f46; /* 滑塊顏色 */
+  border-radius: 10px;
+  border: 2px solid #1a1f24; /* 讓滑塊跟背景有間距 */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #56a2e8; /* 滑塊 hover 高亮 */
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f46 #1a1f24;
+}
+
