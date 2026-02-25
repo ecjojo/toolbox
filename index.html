@@ -118,34 +118,7 @@
 
 
     <!-- Progressive enhancement for tabs -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const buttons = Array.from(document.querySelectorAll('.toggle-button'));
-            const panels = Array.from(document.querySelectorAll('.toggle-content'));
 
-            function activate(idx) {
-                buttons.forEach((btn, i) => {
-                    const active = i === idx;
-                    btn.setAttribute('aria-selected', active);
-                    btn.setAttribute('aria-pressed', active);
-                });
-                panels.forEach((p, i) => p.classList.toggle('active', i === idx));
-            }
-
-            buttons.forEach((btn, i) => btn.addEventListener('click', () => activate(i)));
-
-            document.querySelector('.toolbar').addEventListener('keydown', (e) => {
-                const current = document.activeElement;
-                const idx = buttons.indexOf(current);
-                if (idx < 0) return;
-                if (e.key === 'ArrowRight') { buttons[(idx + 1) % buttons.length].focus(); }
-                if (e.key === 'ArrowLeft') { buttons[(idx - 1 + buttons.length) % buttons.length].focus(); }
-                if (e.key === 'Home') { buttons[0].focus(); }
-                if (e.key === 'End') { buttons[buttons.length - 1].focus(); }
-                if (e.key === 'Enter' || e.key === ' ') { activate(idx); }
-            });
-        });
-    </script>
 
     <script type="module">
   document.addEventListener('DOMContentLoaded', () => {
