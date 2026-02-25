@@ -257,3 +257,36 @@ section[aria-label="emoji book"]{
   scrollbar-color: #3a3f46 #1a1f24;
 }
 
+/* 顏文字格線 — 跟 emoji-list 一致的並排 */
+
+/* 每顆按鈕 */
+.kaomoji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 8px;
+  background: var(--btn-bg, rgba(0, 0, 0, 0.3));
+  color: inherit;
+  font-size: 0.85rem;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.kaomoji:hover {
+  background: var(--btn-hover-bg, rgba(255,255,255,0.1));
+}
+
+.kaomoji:active {
+  transform: scale(0.95);
+}
+
+#recent-kaomojis,
+.kaomoji-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 0;
+}

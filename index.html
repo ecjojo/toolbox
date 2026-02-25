@@ -9,7 +9,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="ecjojo toolbox" />
     <meta property="og:description" content="Emoji book, symbol book, cute font generator." />
-    <title>ecjojo toolbox</title>
+    <title>ecjojo clipboard - emoji | 顏文字 | 符號</title>
 
     <!-- App CSS -->
     <link rel="stylesheet" href="styles.css">
@@ -21,16 +21,13 @@
 <body>
     <main class="page-wrap" role="main">
         <section class="card-shell" aria-label="toolbox">
-            <div class="brand-title">
-                <b>🧰 ᴛᴏᴏʟʙᴏx</b>
-            </div>
-
-            <hr />
 
             <!-- Toolbar / Tabs (only: ᴇᴍᴏᴊɪ / ꜱʏᴍʙᴏʟ / ꜰᴏɴᴛ) -->
             <div class="toolbar" role="tablist" aria-label="工具切換">
                 <button type="button" class="toggle-button" role="tab" aria-selected="true"
                     aria-pressed="true">ᴇᴍᴏᴊɪ</button>
+                    <button type="button" class="toggle-button" role="tab"
+  aria-selected="false" aria-pressed="false">ᴋᴀᴏᴍᴏᴊɪ</button>
                 <button type="button" class="toggle-button" role="tab" aria-selected="false"
                     aria-pressed="false">ꜱʏᴍʙᴏʟ</button>
                 <button type="button" class="toggle-button" role="tab" aria-selected="false"
@@ -46,6 +43,13 @@
                     <div id="recent-emojis" aria-live="polite"></div>
                     <div id="emoji-book"></div>
                 </section>
+
+                <section class="toggle-content" role="tabpanel" aria-label="kaomoji book">
+  <hr />
+  <h5 class="section-title">ᴋᴀᴏᴍᴏᴊɪ ʙᴏᴏᴋ</h5>
+  <div id="recent-kaomojis" aria-live="polite"></div>
+  <div id="kaomoji-book"></div>
+</section>
 
                 <!-- Symbol Book -->
                 <section class="toggle-content" role="tabpanel" aria-label="symbol book">
@@ -129,6 +133,7 @@
       "emoji book":   () => import('./js/emojibook.js'),
       "symbol book":  () => import('./js/symbolbook.js'),
       "cute font generator": () => Promise.resolve(), // 已載入
+      "kaomoji book":       () => import('./js/kaomojibook.js'), // ← 加這行
     };
     const loaded = new Set();
 

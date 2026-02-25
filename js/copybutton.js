@@ -1,33 +1,45 @@
-const btnSound_copy = new Audio('sounds/button-fx.mp3');
+// js/copybutton.js
+const btnSound = new Audio('sounds/button-fx.mp3');
 
-$(function() {
-    var intv;
+// 供 emojibook.js 使用
+window.btnSound_book = btnSound;
 
-    function resetCopyButton() {
-        $(".copybutton").html('Copy');
-        intv = setInterval(function() {
-            $(".copybutton").html('Copy');
-        }, 1000);
+document.addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.copybutton');
+    if (!btn) return;
+
+    // 取得目標文字
+    const targetSel = btn.dataset.clipboardTarget;
+    const text = targetSel
+      ? (document.querySelector(targetSel)?.value ?? '')
+      : (btn.dataset.clipboardText ?? '');
+
+    if (!text) return;
+
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch {
+      // fallback for older browsers
+      const ta = Object.assign(document.createElement('textarea'), {
+        value: text, readOnly: true
+      });
+      ta.style.cssText = 'position:absolute;left:-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
     }
 
-    resetCopyButton();
+    // 音效
+    try { btnSound.currentTime = 0; btnSound.play(); } catch {}
 
-    $("body").on('click', ".copybutton", function() {
-        var $button = $(this);
-        $button.html('Copied');
-        clearInterval(intv);
-        setTimeout(function() {
-            $button.html('Copy');
-            resetCopyButton();
-        }, 1000);
-    });
-});
-
-var clipboard = new ClipboardJS('.copybutton');
-clipboard.on('success', function(e) {
-    btnSound_copy.play();
-    //console.log(e);
-});
-clipboard.on('error', function(e) {
-    //console.log(e);
+    // 按鈕回饋
+    btn.textContent = 'Copied';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.disabled = false;
+    }, 1000);
+  });
 });
