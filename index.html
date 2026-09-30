@@ -1,196 +1,238 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-Hant">
-
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="ecjojo toolbox" />
-    <meta name="description" content="Emoji, symbols, cute fonts toolkit by ecjojo." />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="ecjojo toolbox" />
-    <meta property="og:description" content="Emoji book, symbol book, cute font generator." />
-    <title>ecjojo clipboard - emoji | 顏文字 | 符號</title>
-
-    <!-- App CSS -->
-    <link rel="stylesheet" href="styles.css">
-
-    <link rel="icon"
-        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" />
-</head>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/><meta content="dark" name="color-scheme"/><meta content="#111417" name="theme-color"/>
+<meta content="ecjojo toolbox" name="author"/>
+<meta content="Emoji, symbols, cute fonts toolkit by ecjojo." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="ecjojo toolbox" property="og:title"/>
+<meta content="Emoji book, symbol book, cute font generator." property="og:description"/>
+<title>ecjojo clipboard - emoji | 顏文字 | 符號</title>
+<!-- App CSS -->
+<link href="styles.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" rel="icon">
+</link></head>
 <body>
-    <main class="page-wrap" role="main">
-        <section class="card-shell" aria-label="toolbox">
-
-            <!-- Toolbar / Tabs (only: ᴇᴍᴏᴊɪ / ꜱʏᴍʙᴏʟ / ꜰᴏɴᴛ) -->
-            <div class="toolbar" role="tablist" aria-label="工具切換">
-                <button type="button" class="toggle-button" role="tab" aria-selected="true"
-                    aria-pressed="true">ᴇᴍᴏᴊɪ</button>
-                    <button type="button" class="toggle-button" role="tab"
-  aria-selected="false" aria-pressed="false">ᴋᴀᴏᴍᴏᴊɪ</button>
-                <button type="button" class="toggle-button" role="tab" aria-selected="false"
-                    aria-pressed="false">ꜱʏᴍʙᴏʟ</button>
-                <button type="button" class="toggle-button" role="tab" aria-selected="false"
-                    aria-pressed="false">ꜰᴏɴᴛ</button>
-            </div>
-
-            <!-- Panels -->
-            <div class="content-container">
-                <!-- Emoji Book -->
-                <section class="toggle-content active" role="tabpanel" aria-label="emoji book">
-                    <hr />
-                    <h5 class="section-title">ᴇᴍᴏᴊɪ ʙᴏᴏᴋ⁵</h5>
-                    <div id="recent-emojis" aria-live="polite"></div>
-                    <div id="emoji-book"></div>
-                </section>
-
-                <section class="toggle-content" role="tabpanel" aria-label="kaomoji book">
-  <hr />
-  <h5 class="section-title">ᴋᴀᴏᴍᴏᴊɪ ʙᴏᴏᴋ</h5>
-  <div id="recent-kaomojis" aria-live="polite"></div>
-  <div id="kaomoji-book"></div>
+<main class="page-wrap" role="main">
+<section aria-label="toolbox" class="card-shell">
+<!-- Toolbar / Tabs (only: ᴇᴍᴏᴊɪ / ꜱʏᴍʙᴏʟ / ꜰᴏɴᴛ) -->
+<div aria-label="工具切換" class="toolbar" role="tablist">
+<button aria-controls="panel-emoji" aria-selected="true" class="toggle-button" id="tab-emoji" role="tab" tabindex="0" type="button">ᴇᴍᴏᴊɪ</button>
+<button aria-controls="panel-kaomoji" aria-selected="false" class="toggle-button" id="tab-kaomoji" role="tab" tabindex="-1" type="button">ᴋᴀᴏᴍᴏᴊɪ</button>
+<button aria-controls="panel-symbol" aria-selected="false" class="toggle-button" id="tab-symbol" role="tab" tabindex="-1" type="button">ꜱʏᴍʙᴏʟ</button>
+<button aria-controls="panel-font" aria-selected="false" class="toggle-button" id="tab-font" role="tab" tabindex="-1" type="button">ꜰᴏɴᴛ</button>
+</div>
+<!-- Panels -->
+<div class="content-container">
+<!-- Emoji Book -->
+<section aria-label="emoji book" aria-labelledby="tab-emoji" class="toggle-content active book-panel" id="panel-emoji" role="tabpanel">
+<hr/>
+<h5 class="section-title">ᴇᴍᴏᴊɪ ʙᴏᴏᴋ⁵</h5>
+<div aria-live="polite" id="recent-emojis"></div>
+<div id="emoji-book"></div>
 </section>
-
-                <!-- Symbol Book -->
-                <section class="toggle-content" role="tabpanel" aria-label="symbol book">
-                    <hr />
-                    <h5 class="section-title">ꜱʏᴍʙᴏʟ ʙᴏᴏᴋ</h5>
-                    <div id="recent-symbols" aria-live="polite"></div>
-                    <div id="symbol-book"></div>
-                </section>
-
-                <!-- Cute Font Generator -->
-                <section class="toggle-content" role="tabpanel" aria-label="cute font generator">
-                    <hr />
-                    <h5 class="section-title">ᴄᴜᴛᴇ ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
-
-                    <!-- 輸入框 -->
-                    <textarea class="form-control dark-textarea fancytext" rows="3"
-                        placeholder="Type or paste text here..." autocomplete="off" autocapitalize="off"
-                        spellcheck="false" aria-label="Input text to convert into cute font"></textarea>
-
-                    <!-- 預覽與複製 -->
-                    <div id="result" class="mt-3">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control dark-input text-9" id="copy_8" value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ"
-                                readonly aria-live="polite">
-                            <div class="input-group-append">
-                                <button type="button" class="input-group-text copybutton" data-clipboard-action="copy"
-                                    data-clipboard-target="#copy_8" aria-label="Copy converted text">
+<section aria-label="kaomoji book" aria-labelledby="tab-kaomoji" class="toggle-content book-panel" hidden="" id="panel-kaomoji" role="tabpanel">
+<hr/>
+<h5 class="section-title">ᴋᴀᴏᴍᴏᴊɪ ʙᴏᴏᴋ</h5>
+<div aria-live="polite" id="recent-kaomojis"></div>
+<div id="kaomoji-book"></div>
+</section>
+<!-- Symbol Book -->
+<section aria-label="symbol book" aria-labelledby="tab-symbol" class="toggle-content book-panel" hidden="" id="panel-symbol" role="tabpanel">
+<hr/>
+<h5 class="section-title">ꜱʏᴍʙᴏʟ ʙᴏᴏᴋ</h5>
+<div aria-live="polite" id="recent-symbols"></div>
+<div id="symbol-book"></div>
+</section>
+<!-- Cute Font Generator -->
+<section aria-label="cute font generator" aria-labelledby="tab-font" class="toggle-content" hidden="" id="panel-font" role="tabpanel">
+<hr/>
+<h5 class="section-title">ᴄᴜᴛᴇ ꜰᴏɴᴛ ɢᴇɴᴇʀᴀᴛᴏʀ</h5>
+<!-- 輸入框 -->
+<textarea aria-label="Input text to convert into cute font" autocapitalize="off" autocomplete="off" class="form-control dark-textarea fancytext" placeholder="Type or paste text here..." rows="3" spellcheck="false"></textarea>
+<!-- 預覽與複製 -->
+<div class="mt-3" id="result">
+<div class="input-group mb-3">
+<input aria-live="polite" class="form-control dark-input text-9" id="copy_8" readonly="" type="text" value="ᴘʀᴇᴠɪᴇᴡ ᴛᴇxᴛ"/>
+<div class="input-group-append">
+<button aria-label="Copy converted text" class="input-group-text copybutton" data-clipboard-action="copy" data-clipboard-target="#copy_8" type="button">
                                     Copy
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+</div>
+</div>
+</div>
+</section>
+</div>
+<hr/>
+<!-- Socials -->
+<div class="container text-center">
+<nav aria-label="social links" class="socials">
+<a aria-label="Twitter" data-hover="twitter" href="https://twitter.com/ecjojoDEV"><i aria-hidden="true" class="fa fa-twitter fa-lg"></i><span class="sr-only">Twitter</span></a>
+<a aria-label="YouTube" data-hover="youtube" href="https://www.youtube.com/@ecjojoDEV"><i aria-hidden="true" class="fa fa-youtube-play fa-lg"></i><span class="sr-only">YouTube</span></a>
+<a aria-label="GitHub" data-hover="github" href="https://github.com/ecjojo"><i aria-hidden="true" class="fa fa-github fa-lg"></i><span class="sr-only">GitHub</span></a>
+<a aria-label="Discord" data-hover="discord" href="https://discord.gg/2uFuM9UjEJ"><i aria-hidden="true" class="fa fa-comments fa-lg"></i><span class="sr-only">Discord</span></a>
+<a aria-label="LinkedIn" data-hover="linkedin" href="https://www.linkedin.com/in/ecjojo/"><i aria-hidden="true" class="fa fa-linkedin fa-lg"></i><span class="sr-only">LinkedIn</span></a>
+</nav>
+</div>
+<footer>© 2024-<span id="current-year"></span> <a href="https://ecjojo.github.io/">ecjojo studio</a></footer>
+</section>
+</main>
+<!-- Local scripts (kept only needed ones) -->
+<script defer="" src="js/clipboard.js"></script>
+<script defer="" src="js/fonts.js"></script>
+<script defer="" src="js/preview.js"></script>
+<script defer="" src="js/copybutton.js"></script>
+<script defer="" src="js/tooldisplay.js"></script>
+<!-- Progressive enhancement for tabs -->
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = Array.from(document.querySelectorAll('.toggle-button'));
+  const panels = Array.from(document.querySelectorAll('.toggle-content'));
+  const toolbar = document.querySelector('.toolbar');
+  const year = document.querySelector('#current-year');
 
+  if (year) year.textContent = String(new Date().getFullYear());
 
-            </div>
+  const loaders = {
+    'emoji book': () => import('./js/emojibook.js'),
+    'kaomoji book': () => import('./js/kaomojibook.js'),
+    'symbol book': () => import('./js/symbolbook.js'),
+    'cute font generator': () => Promise.resolve()
+  };
 
-            <hr />
+  const loaded = new Set();
+  const loading = new Map();
 
-            <!-- Socials -->
-            <div class="container text-center">
-                <nav class="socials" aria-label="social links">
-                    <a href="https://twitter.com/ecjojoDEV" aria-label="Twitter" data-hover="twitter"><i
-                            class="fa fa-twitter fa-lg" aria-hidden="true"></i><span class="sr-only">Twitter</span></a>
-                    <a href="https://www.youtube.com/@ecjojoDEV" aria-label="YouTube" data-hover="youtube"><i
-                            class="fa fa-youtube-play fa-lg" aria-hidden="true"></i><span
-                            class="sr-only">YouTube</span></a>
-                    <a href="https://github.com/ecjojo" aria-label="GitHub" data-hover="github"><i
-                            class="fa fa-github fa-lg" aria-hidden="true"></i><span class="sr-only">GitHub</span></a>
-                    <a href="https://discord.gg/2uFuM9UjEJ" aria-label="Discord" data-hover="discord"><i
-                            class="fa fa-comments fa-lg" aria-hidden="true"></i><span class="sr-only">Discord</span></a>
-                    <a href="https://www.linkedin.com/in/ecjojo/" aria-label="LinkedIn" data-hover="linkedin"><i
-                            class="fa fa-linkedin fa-lg" aria-hidden="true"></i><span
-                            class="sr-only">LinkedIn</span></a>
-                </nav>
-            </div>
+  function mountPanel(label) {
+    if (label === 'emoji book' && window.emojiBook?.mount) {
+      window.emojiBook.mount();
+    }
+  }
 
-            <footer>© 2024 <a href="https://ecjojo.github.io/">ecjojo studio</a></footer>
-        </section>
-    </main>
+  function unmountPanel(label) {
+    if (label === 'emoji book' && window.emojiBook?.unmount) {
+      window.emojiBook.unmount();
+    }
+  }
 
+  function clearLoadError(panel) {
+    panel.querySelector('.panel-load-error')?.remove();
+  }
 
+  function showLoadError(panel) {
+    clearLoadError(panel);
+    const message = document.createElement('p');
+    message.className = 'panel-load-error';
+    message.setAttribute('role', 'status');
+    message.textContent = '載入失敗，請再按一次分頁重試。';
+    panel.prepend(message);
+  }
 
-    <!-- Local scripts (kept only needed ones) -->
-    <script defer src="js/clipboard.js"></script>
-    <script defer src="js/fonts.js"></script>
-    <script defer src="js/preview.js"></script>
-    <script defer src="js/copybutton.js"></script>
-    <script defer src="js/tooldisplay.js"></script>
+  async function ensureLoaded(idx) {
+    const panel = panels[idx];
+    if (!panel) return;
 
+    const label = panel.getAttribute('aria-label');
+    if (!label) return;
 
-    <!-- Progressive enhancement for tabs -->
-
-
-    <script type="module">
-  document.addEventListener('DOMContentLoaded', () => {
-    const buttons = Array.from(document.querySelectorAll('.toggle-button'));
-    const panels  = Array.from(document.querySelectorAll('.toggle-content'));
-
-    const loaders = {
-      "emoji book":   () => import('./js/emojibook.js'),
-      "symbol book":  () => import('./js/symbolbook.js'),
-      "cute font generator": () => Promise.resolve(), // 已載入
-      "kaomoji book":       () => import('./js/kaomojibook.js'), // ← 加這行
-    };
-    const loaded = new Set();
-
-  function activate(idx) {
-      // 先對「將要被隱藏」的 Emoji 面板做 unmount（把 DOM 縮小）
-      const currentActive = panels.findIndex(p => p.classList.contains('active'));
-      if (currentActive !== -1) {
-        const currentLabel = panels[currentActive].getAttribute('aria-label');
-        if (currentLabel === 'emoji book' && window.emojiBook?.unmount) {
-          window.emojiBook.unmount();
-        }
-      }
-
-      // 切換 aria / 類
-      buttons.forEach((btn, i) => {
-        const active = i === idx;
-        btn.setAttribute('aria-selected', active);
-        btn.setAttribute('aria-pressed', active);
-      });
-      panels.forEach((p, i) => p.classList.toggle('active', i === idx));
-
-      // Lazy import
-      const label = panels[idx].getAttribute('aria-label');
-      if (!loaded.has(label)) {
-        loaders[label]?.().catch(console.error).finally(() => {
-          loaded.add(label);
-          // 首次載入完如果是 emoji 面板，馬上掛載
-          if (label === 'emoji book' && window.emojiBook?.mount) {
-            window.emojiBook.mount();
-          }
-        });
-      } else {
-        // 已載入過 → 如果是 emoji 面板，切回時馬上掛載
-        if (label === 'emoji book' && window.emojiBook?.mount) {
-          window.emojiBook.mount();
-        }
-      }
+    if (loaded.has(label)) {
+      if (panel.classList.contains('active')) mountPanel(label);
+      return;
     }
 
-    buttons.forEach((btn, i) => btn.addEventListener('click', () => activate(i)));
-    document.querySelector('.toolbar').addEventListener('keydown', (e) => {
-      const current = document.activeElement;
-      const idx = buttons.indexOf(current);
-      if (idx < 0) return;
-      if (e.key === 'ArrowRight') buttons[(idx + 1) % buttons.length].focus();
-      if (e.key === 'ArrowLeft')  buttons[(idx - 1 + buttons.length) % buttons.length].focus();
-      if (e.key === 'Home')       buttons[0].focus();
-      if (e.key === 'End')        buttons[buttons.length - 1].focus();
-      if (e.key === 'Enter' || e.key === ' ') activate(idx);
+    if (loading.has(label)) {
+      try {
+        await loading.get(label);
+      } catch {
+        return;
+      }
+      return;
+    }
+
+    const loader = loaders[label];
+    if (!loader) return;
+
+    const promise = loader()
+      .then(() => {
+        loaded.add(label);
+        clearLoadError(panel);
+        if (panel.classList.contains('active')) mountPanel(label);
+      })
+      .catch((error) => {
+        console.error(`Failed to load panel: ${label}`, error);
+        showLoadError(panel);
+        throw error;
+      })
+      .finally(() => {
+        loading.delete(label);
+      });
+
+    loading.set(label, promise);
+
+    try {
+      await promise;
+    } catch {
+      // Keep the panel retryable. A later click will try the import again.
+    }
+  }
+
+  function activate(idx, { focus = false } = {}) {
+    if (idx < 0 || idx >= panels.length) return;
+
+    const currentActive = panels.findIndex((panel) => panel.classList.contains('active'));
+    if (currentActive !== -1 && currentActive !== idx) {
+      const currentLabel = panels[currentActive].getAttribute('aria-label');
+      unmountPanel(currentLabel);
+    }
+
+    buttons.forEach((button, i) => {
+      const active = i === idx;
+      button.setAttribute('aria-selected', String(active));
+      button.tabIndex = active ? 0 : -1;
     });
 
-    // 預設第一個面板活化（會觸發對應 lazy ）
-    activate(0);
+    panels.forEach((panel, i) => {
+      const active = i === idx;
+      panel.classList.toggle('active', active);
+      panel.hidden = !active;
+    });
+
+    if (focus) buttons[idx]?.focus();
+
+    const label = panels[idx].getAttribute('aria-label');
+    if (loaded.has(label)) {
+      mountPanel(label);
+    } else {
+      void ensureLoaded(idx);
+    }
+  }
+
+  buttons.forEach((button, i) => {
+    button.addEventListener('click', () => activate(i));
   });
+
+  toolbar?.addEventListener('keydown', (event) => {
+    const current = document.activeElement;
+    const idx = buttons.indexOf(current);
+    if (idx < 0) return;
+
+    let nextIdx = null;
+
+    if (event.key === 'ArrowRight') nextIdx = (idx + 1) % buttons.length;
+    if (event.key === 'ArrowLeft') nextIdx = (idx - 1 + buttons.length) % buttons.length;
+    if (event.key === 'Home') nextIdx = 0;
+    if (event.key === 'End') nextIdx = buttons.length - 1;
+
+    if (nextIdx !== null) {
+      event.preventDefault();
+      activate(nextIdx, { focus: true });
+    }
+  });
+
+  activate(0);
+});
 </script>
-
-
 </body>
-
 </html>

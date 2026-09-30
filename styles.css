@@ -15,14 +15,17 @@
 }
 
 /* ===== Base ===== */
-html,body{height:100%}
+*,*::before,*::after{box-sizing:border-box}
+html,body{min-height:100%}
+[hidden]{display:none !important}
+button,input,textarea{font:inherit}
 body{
   margin:0;
   padding:0;
   width:100%;
   background:var(--bg);
   color:var(--text);
-  font-family:"Space Mono",ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
@@ -31,7 +34,7 @@ a:hover{color:var(--brand);text-decoration:none}
 hr{border-color:#2c333b}
 
 /* ===== Layout ===== */
-.page-wrap{display:grid;place-items:center;padding:40px 16px}
+.page-wrap{display:grid;place-items:center;min-height:100svh;padding:40px 16px}
 .card-shell{
   width:min(960px,100%);
   background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -51,10 +54,11 @@ hr{border-color:#2c333b}
   background:#2a3138;color:var(--text);
   border:1px solid #333b44;border-radius:999px;
   padding:8px 14px;font-size:12px;letter-spacing:.08em;
-  text-transform:uppercase;cursor:pointer;transition:transform .05s ease,background .15s ease,border-color .15s ease
+  text-transform:uppercase;cursor:pointer;touch-action:manipulation;
+  transition:transform .05s ease,background .15s ease,border-color .15s ease
 }
 .toggle-button:focus{outline:2px solid var(--brand);outline-offset:2px}
-.toggle-button[aria-pressed="true"]{background:#39414a;border-color:#4a5562}
+.toggle-button[aria-selected="true"]{background:#39414a;border-color:#4a5562}
 .toggle-button:active{transform:translateY(1px)}
 
 /* ===== Panels ===== */
@@ -136,14 +140,15 @@ section[aria-label="cute font generator"] textarea.dark-textarea{resize:vertical
 
 /* Input group 外觀（自製） */
 section[aria-label="cute font generator"] .input-group{
-  display:flex;width:100%;align-items:stretch;
+  display:flex;width:100%;align-items:stretch;min-width:0;
   border-radius:12px;overflow:hidden;
   background:#171a1e;border:1px solid #2c333b;
 }
 section[aria-label="cute font generator"] .input-group .form-control.dark-input{
+  flex:1 1 auto;min-width:0;
   border:none;border-right:1px solid #2c333b;border-radius:0;background:transparent
 }
-section[aria-label="cute font generator"] .input-group .input-group-append{display:flex}
+section[aria-label="cute font generator"] .input-group .input-group-append{display:flex;flex:0 0 auto}
 section[aria-label="cute font generator"] .input-group .input-group-text,
 section[aria-label="cute font generator"] .copybutton{
   display:inline-flex;align-items:center;justify-content:center;
@@ -168,7 +173,7 @@ section[aria-label="cute font generator"] .dark-textarea::placeholder{color:var(
 
 /* ===== Socials ===== */
 .socials{display:flex;gap:8px;justify-content:center;align-items:center}
-.socials a{padding:2px;color:var(--muted)}
+.socials a{display:inline-flex;align-items:center;justify-content:center;min-width:32px;min-height:32px;padding:4px;color:var(--muted)}
 .socials a[data-hover="twitter"]:hover{color:#56A2E8}
 .socials a[data-hover="youtube"]:hover{color:#E85656}
 .socials a[data-hover="github"]:hover{color:#B65CE5}
@@ -214,19 +219,20 @@ footer a{color:var(--muted)}
   min-width: 22px;
 
   transition: transform .06s ease, filter .1s ease, background .15s ease, border-color .15s ease;
-  will-change: transform;
   contain: layout paint style;
 }
 .symbol:hover { transform: translateY(-1px); background: #20262c; }
 .symbol:active { transform: translateY(0); filter: brightness(1.1); }
 
-/* Emoji 面板 = IO root：可以滾動、可見性優化但保有預估尺寸 */
-section[aria-label="emoji book"]{
-  max-height: 65vh;         /* 或 70vh/600px，重點是要限制高度 */
-  overflow: auto;           /* 真的形成 scrollport */
-  content-visibility: auto; /* 可見時才排版 */
-  contain: content;         /* 隔離影響範圍 */
-  contain-intrinsic-size: 900px 600px; /* 預估尺寸，避免一開始高度為 0 */
+/* Book panels share one scroll behavior */
+.book-panel{
+  max-height:65vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  content-visibility:auto;
+  contain:content;
+  contain-intrinsic-size:900px 600px;
+  scrollbar-gutter:stable;
 }
 
 
@@ -290,3 +296,41 @@ section[aria-label="emoji book"]{
   gap: 6px;
   padding: 6px 0;
 }
+
+/* ===== Runtime feedback ===== */
+.panel-load-error{
+  margin:10px 0 14px;
+  padding:10px 12px;
+  border:1px solid #5a3a3a;
+  border-radius:10px;
+  background:#2a1f1f;
+  color:#f2c8c8;
+  font-size:13px;
+  text-align:center;
+}
+
+.emoji:focus-visible,
+.symbol:focus-visible,
+.kaomoji:focus-visible{
+  outline:2px solid var(--brand);
+  outline-offset:2px;
+}
+
+@media (max-width:600px){
+  .page-wrap{padding:16px 10px}
+  .card-shell{padding:20px 12px 12px;border-radius:12px}
+  .toolbar{gap:6px}
+  .toggle-button{padding:8px 10px;font-size:11px}
+  .book-panel{max-height:70svh}
+  footer{margin:16px 8px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto !important;
+    transition-duration:.01ms !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+  }
+}
+
