@@ -13,8 +13,59 @@
 <!-- App CSS -->
 <link href="styles.css?v=retain-20261024" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" rel="icon">
-</link></head>
-<body>
+</link>
+<!-- Pin the nested renderer import to this release, including cached book modules. -->
+<script type="importmap">
+{
+  "imports": {
+    "./js/virtualbook.js?v=retain-20261024": "./js/virtualbook.js?v=stable-scroll-20261024"
+  }
+}
+</script>
+<style id="persistent-book-layout">
+/* Retained book: populate once, let native CSS grid handle every viewport width. */
+.persistent-book{--book-cell-min:40px;min-width:0}
+.persistent-book[data-book-mode="symbol"]{--book-cell-min:48px}
+.persistent-book-section{contain:layout style}
+.persistent-book-heading{display:flex;align-items:flex-end;min-height:40px;margin:0;padding:0 0 5px}
+.persistent-book-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,var(--book-cell-min)),1fr));
+  grid-auto-rows:34px;
+  gap:6px;
+  align-items:center;
+  min-width:0;
+}
+.persistent-book-grid > .emoji,
+.persistent-book-grid > .symbol{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-width:0;
+  height:34px;
+  margin:0;
+  padding:0 2px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.persistent-book-grid > .emoji{font-size:22px}
+.persistent-book-grid > .symbol{font-size:16px}
+.persistent-book-grid > .book-cell-wide{grid-column:span 2}
+/* Wheel scrolling moves the pointer over many cells. Keep feedback immediate
+   so these cells do not start overlapping transform/filter animations. */
+.book-panel .emoji,.book-panel .symbol,.book-panel .kaomoji{transition:none}
+.book-panel .emoji:hover,.book-panel .emoji:active,
+.book-panel .symbol:hover,.book-panel .symbol:active,
+.book-panel .kaomoji:hover,.book-panel .kaomoji:active{transform:none;filter:none}
+.persistent-book-grid > .emoji:hover,
+.persistent-book-grid > .symbol:hover{background:#20262c}
+</style>
+</head>
+<body data-scroll-build="stable-scroll-20261024">
 <main class="page-wrap" role="main">
 <section aria-label="toolbox" class="card-shell">
 <!-- Toolbar / Tabs (only: ᴇᴍᴏᴊɪ / ꜱʏᴍʙᴏʟ / ꜰᴏɴᴛ) -->
