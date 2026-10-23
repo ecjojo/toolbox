@@ -1,3 +1,4 @@
+import { createVirtualBook } from './virtualbook.js';
 const btnSound_symbol = new Audio('sounds/button-fx.mp3');
 
 const STORAGE_KEY = 'recentSymbols';
@@ -119,7 +120,8 @@ const symbols = [
     // Add more categories and symbols here
   ];
 
-  // Event delegation keeps two listeners regardless of how many symbols exist.
+  const panel = document.getElementById('panel-symbol');
+
   function createSymbolElement(value) {
     const button = document.createElement('button');
     button.type = 'button';
@@ -150,7 +152,8 @@ const symbols = [
     recentSymbols.unshift(value);
     if (recentSymbols.length > MAX_RECENT) recentSymbols.length = MAX_RECENT;
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(recentSymbols)); } catch {}
-    renderRecentSymbols(); // The full symbol list never needs to be rebuilt.
+    renderRecentSymbols();
+    book.refresh();
   }
 
   async function copyToClipboard(value) {
@@ -184,57 +187,9 @@ const symbols = [
 
   recentSymbolContainer.addEventListener('click', handleSymbolClick);
   symbolContainer.addEventListener('click', handleSymbolClick);
-
-  // Build the long symbol list incrementally, leaving the main thread responsive.
-  function renderSymbols() {
-    const CHUNK_SIZE = 120;
-    let categoryIndex = 0;
-    let symbolIndex = 0;
-    let listElement = null;
-
-    function scheduleNext() {
-      if ('requestIdleCallback' in window) {
-        window.requestIdleCallback(renderChunk, { timeout: 150 });
-      } else {
-        setTimeout(renderChunk, 0);
-      }
-    }
-
-    function renderChunk() {
-      let added = 0;
-      const fragment = document.createDocumentFragment();
-
-      while (added < CHUNK_SIZE && categoryIndex < symbols.length) {
-        const group = symbols[categoryIndex];
-        if (!listElement) {
-          const heading = document.createElement('div');
-          heading.className = 'symbol-category';
-          heading.textContent = group.category;
-          listElement = document.createElement('div');
-          listElement.className = 'symbol-list';
-          fragment.append(heading, listElement);
-        }
-
-        const items = document.createDocumentFragment();
-        while (symbolIndex < group.symbols.length && added < CHUNK_SIZE) {
-          items.appendChild(createSymbolElement(group.symbols[symbolIndex++]));
-          added++;
-        }
-        listElement.appendChild(items);
-
-        if (symbolIndex === group.symbols.length) {
-          categoryIndex++;
-          symbolIndex = 0;
-          listElement = null;
-        }
-      }
-
-      symbolContainer.appendChild(fragment);
-      if (categoryIndex < symbols.length) scheduleNext();
-    }
-
-    scheduleNext();
-  }
-
+  const book = createVirtualBook({
+    panel, container: symbolContainer, groups: symbols, itemKey: 'symbols', mode: 'symbol'
+  });
   renderRecentSymbols();
-  requestAnimationFrame(renderSymbols);
+  window.symbolBook = { mount: () => book.refresh(), unmount: () => {} };
+  book.refresh();

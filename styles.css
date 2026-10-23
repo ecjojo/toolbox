@@ -63,7 +63,7 @@ hr{border-color:#2c333b}
 
 /* ===== Panels ===== */
 .content-container{margin-top:12px}
-.toggle-content{display:none;content-visibility:auto;contain:content;contain-intrinsic-size:900px 600px}
+.toggle-content{display:none}
 .toggle-content.active{display:block}
 .section-title{text-align:center;margin:8px 0 12px}
 
@@ -113,7 +113,6 @@ hr{border-color:#2c333b}
  border-radius:10px;
   padding:4px 0;min-width:22px;
   transition:transform .06s ease,filter .1s ease,background .15s ease,border-color .15s ease;
-  contain:layout paint style;
 }
 .emoji:hover{transform:translateY(-1px);background:#20262c}
 .emoji:active{transform:translateY(0);filter:brightness(1.1)}
@@ -221,7 +220,6 @@ footer a{color:var(--muted)}
   min-width: 22px;
 
   transition: transform .06s ease, filter .1s ease, background .15s ease, border-color .15s ease;
-  contain: layout paint style;
 }
 .symbol:hover { transform: translateY(-1px); background: #20262c; }
 .symbol:active { transform: translateY(0); filter: brightness(1.1); }
@@ -231,9 +229,6 @@ footer a{color:var(--muted)}
   max-height:65vh;
   overflow-y:auto;
   overscroll-behavior:contain;
-  content-visibility:auto;
-  contain:content;
-  contain-intrinsic-size:900px 600px;
   scrollbar-gutter:stable;
 }
 
@@ -260,7 +255,7 @@ footer a{color:var(--muted)}
 }
 
 /* Firefox */
-* {
+html, body, .book-panel {
   scrollbar-width: thin;
   scrollbar-color: #3a3f46 #1a1f24;
 }
@@ -336,3 +331,39 @@ footer a{color:var(--muted)}
   }
 }
 
+
+/* Windowed book: constant-height rows and a bounded number of active glyphs. */
+.virtual-book-row{
+  display:grid;
+  grid-template-columns:repeat(var(--book-cols),minmax(0,1fr));
+  gap:6px;
+  align-items:center;
+  height:40px;
+}
+.virtual-book-heading{
+  display:flex;
+  align-items:flex-end;
+  height:40px;
+  margin:0;
+  padding:0 0 5px;
+  box-sizing:border-box;
+}
+.virtual-book-spacer{height:0;pointer-events:none}
+.virtual-book-visible{min-width:0}
+.virtual-book-row > .emoji,
+.virtual-book-row > .symbol{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  width:100%;
+  min-width:0;
+  margin:0;
+  padding:0 2px;
+  border:0;
+  background:transparent;
+  color:inherit;
+  cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+}
+.virtual-book-row > .emoji{height:32px;font-size:22px}
+.virtual-book-row > .symbol{height:34px;font-size:16px;white-space:nowrap}
