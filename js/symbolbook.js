@@ -1,6 +1,17 @@
 const btnSound_symbol = new Audio('sounds/button-fx.mp3');
 
-const recentSymbols = JSON.parse(localStorage.getItem("recentSymbols")) || [];
+const STORAGE_KEY = 'recentSymbols';
+const MAX_RECENT = 36;
+let recentSymbols = [];
+try {
+  // Preserve previous visits, including the legacy lower-case storage key.
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem('recentsymbols') || '[]');
+  if (Array.isArray(saved)) {
+    recentSymbols = saved.filter(value => typeof value === 'string').slice(0, MAX_RECENT);
+  }
+} catch {
+  recentSymbols = [];
+}
 
 const symbolContainer = document.getElementById("symbol-book");
 
@@ -108,80 +119,122 @@ const symbols = [
     // Add more categories and symbols here
   ];
 
-  const countOfSymbols = 36;
-
-function updateSymbolContainer() {
-    symbolContainer.innerHTML = "";
-  recentSymbolContainer.innerHTML = "";
-
-  // 最近使用的 symbol
-  for (let i = 0; i < recentSymbols.length; i++) {
-    const symbolItem = recentSymbols[i];
-    const symbolElement = createSymbolElement(symbolItem);
-    recentSymbolContainer.appendChild(symbolElement);
+  // Event delegation keeps two listeners regardless of how many symbols exist.
+  function createSymbolElement(value) {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'symbol';
+    button.dataset.symbol = value;
+    button.textContent = value;
+    return button;
   }
 
-  // 預設 symbol
-  const defaultsymbolCount = Math.min(countOfSymbols - recentSymbols.length, defaultSymbols.length);
-  for (let i = 0; i < defaultsymbolCount; i++) {
-    const symbolItem = defaultSymbols[i];
-    const symbolElement = createSymbolElement(symbolItem);
-    recentSymbolContainer.appendChild(symbolElement);
-  }
-
-  // 分類 symbol
-  for (let i = 0; i < symbols.length; i++) {
-    const categoryItem = symbols[i];
-    const categoryElement = document.createElement("div");
-    categoryElement.textContent = categoryItem.category;
-    categoryElement.classList.add("category");
-    symbolContainer.appendChild(categoryElement);
-
-    const symbolList = categoryItem.symbols;
-    for (let j = 0; j < symbolList.length; j++) {
-      const symbolItem = symbolList[j];
-      const symbolElement = createSymbolElement(symbolItem);
-      symbolContainer.appendChild(symbolElement);
+  function renderRecentSymbols() {
+    const seen = new Set(recentSymbols);
+    const items = [...recentSymbols];
+    for (const value of defaultSymbols) {
+      if (items.length >= MAX_RECENT) break;
+      if (!seen.has(value)) {
+        items.push(value);
+        seen.add(value);
+      }
     }
+    const fragment = document.createDocumentFragment();
+    for (const item of items) fragment.appendChild(createSymbolElement(item));
+    recentSymbolContainer.replaceChildren(fragment);
   }
-}
 
-updateSymbolContainer();
-
-function createSymbolElement(symbolItem) {
-  const symbolElement = document.createElement("div");
-  symbolElement.textContent = symbolItem;
-  symbolElement.classList.add("symbol");
-  symbolElement.addEventListener("click", function () {
-    copyToClipboard(symbolItem);
-    updateRecentsymbols(symbolItem);
-    updateSymbolContainer();
-  });
-  return symbolElement;
-}
-
-function copyToClipboard(text) {
-  const textarea = document.createElement("textarea");
-  textarea.value = text;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  document.body.removeChild(textarea);
-}
-
-function updateRecentsymbols(symbolItem) {
-  const symbolIndex = recentSymbols.indexOf(symbolItem);
-  if (symbolIndex !== -1) {
-    recentSymbols.splice(symbolIndex, 1);
+  function rememberSymbol(value) {
+    const index = recentSymbols.indexOf(value);
+    if (index >= 0) recentSymbols.splice(index, 1);
+    recentSymbols.unshift(value);
+    if (recentSymbols.length > MAX_RECENT) recentSymbols.length = MAX_RECENT;
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(recentSymbols)); } catch {}
+    renderRecentSymbols(); // The full symbol list never needs to be rebuilt.
   }
-  recentSymbols.unshift(symbolItem);
-  if (recentSymbols.length > countOfSymbols) {
-    recentSymbols.pop();
-  }
-  localStorage.setItem("recentsymbols", JSON.stringify(recentSymbols));
-  btnSound_symbol.play();
-}
-  
 
-  //alert("表情符號已複製到剪貼板！");
-  
+  async function copyToClipboard(value) {
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+    } catch {}
+    const textarea = document.createElement('textarea');
+    textarea.value = value;
+    textarea.style.cssText = 'position:absolute;left:-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try { document.execCommand('copy'); } catch {}
+    textarea.remove();
+  }
+
+  function handleSymbolClick(event) {
+    const target = event.target.closest('.symbol');
+    if (!target) return;
+    const value = target.dataset.symbol;
+    if (!value) return;
+    void copyToClipboard(value);
+    rememberSymbol(value);
+    try {
+      btnSound_symbol.currentTime = 0;
+      btnSound_symbol.play().catch(() => {});
+    } catch {}
+  }
+
+  recentSymbolContainer.addEventListener('click', handleSymbolClick);
+  symbolContainer.addEventListener('click', handleSymbolClick);
+
+  // Build the long symbol list incrementally, leaving the main thread responsive.
+  function renderSymbols() {
+    const CHUNK_SIZE = 120;
+    let categoryIndex = 0;
+    let symbolIndex = 0;
+    let listElement = null;
+
+    function scheduleNext() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(renderChunk, { timeout: 150 });
+      } else {
+        setTimeout(renderChunk, 0);
+      }
+    }
+
+    function renderChunk() {
+      let added = 0;
+      const fragment = document.createDocumentFragment();
+
+      while (added < CHUNK_SIZE && categoryIndex < symbols.length) {
+        const group = symbols[categoryIndex];
+        if (!listElement) {
+          const heading = document.createElement('div');
+          heading.className = 'symbol-category';
+          heading.textContent = group.category;
+          listElement = document.createElement('div');
+          listElement.className = 'symbol-list';
+          fragment.append(heading, listElement);
+        }
+
+        const items = document.createDocumentFragment();
+        while (symbolIndex < group.symbols.length && added < CHUNK_SIZE) {
+          items.appendChild(createSymbolElement(group.symbols[symbolIndex++]));
+          added++;
+        }
+        listElement.appendChild(items);
+
+        if (symbolIndex === group.symbols.length) {
+          categoryIndex++;
+          symbolIndex = 0;
+          listElement = null;
+        }
+      }
+
+      symbolContainer.appendChild(fragment);
+      if (categoryIndex < symbols.length) scheduleNext();
+    }
+
+    scheduleNext();
+  }
+
+  renderRecentSymbols();
+  requestAnimationFrame(renderSymbols);

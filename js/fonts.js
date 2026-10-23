@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (input && output) {
     input.addEventListener('input', () => {
       output.value = toCuteFont(input.value);
-       btnSound_pick.play();
+      try { btnSound_copy.currentTime = 0; btnSound_copy.play().catch(() => {}); } catch {}
     });
   }
 });

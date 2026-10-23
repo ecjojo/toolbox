@@ -40,17 +40,58 @@ import { emojis, defaultEmojis } from './emojidata.js';
       .join('');
   }
 
-  // === 全量渲染（一次性） ===
+  // Render in small tasks so the browser can paint and respond to input.
   function renderAll() {
-    let html = '';
-    for (const { category, emojis: list } of emojis) {
-      html += `<div class="emoji-category">${category}</div><div class="emoji-list">`;
-      for (const e of list) {
-        html += `<div class="${EMOJI_CLASS}" data-emoji="${e}">${e}</div>`;
+    const CHUNK_SIZE = 120;
+    let categoryIndex = 0;
+    let emojiIndex = 0;
+    let listElement = null;
+
+    function scheduleNext() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(renderChunk, { timeout: 150 });
+      } else {
+        setTimeout(renderChunk, 0);
       }
-      html += '</div>';
     }
-    emojiContainer.innerHTML = html;
+
+    function renderChunk() {
+      let added = 0;
+      const fragment = document.createDocumentFragment();
+
+      while (added < CHUNK_SIZE && categoryIndex < emojis.length) {
+        const group = emojis[categoryIndex];
+        if (!listElement) {
+          const heading = document.createElement('div');
+          heading.className = 'emoji-category';
+          heading.textContent = group.category;
+          listElement = document.createElement('div');
+          listElement.className = 'emoji-list';
+          fragment.append(heading, listElement);
+        }
+        const items = document.createDocumentFragment();
+        while (emojiIndex < group.emojis.length && added < CHUNK_SIZE) {
+          const value = group.emojis[emojiIndex++];
+          const item = document.createElement('div');
+          item.className = EMOJI_CLASS;
+          item.dataset.emoji = value;
+          item.textContent = value;
+          items.appendChild(item);
+          added++;
+        }
+        listElement.appendChild(items);
+        if (emojiIndex === group.emojis.length) {
+          categoryIndex++;
+          emojiIndex = 0;
+          listElement = null;
+        }
+      }
+
+      emojiContainer.appendChild(fragment);
+      if (categoryIndex < emojis.length) scheduleNext();
+    }
+
+    scheduleNext();
   }
 
   // === Clipboard ===

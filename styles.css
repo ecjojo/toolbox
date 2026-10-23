@@ -113,7 +113,6 @@ hr{border-color:#2c333b}
  border-radius:10px;
   padding:4px 0;min-width:22px;
   transition:transform .06s ease,filter .1s ease,background .15s ease,border-color .15s ease;
-  will-change:transform;
   contain:layout paint style;
 }
 .emoji:hover{transform:translateY(-1px);background:#20262c}
@@ -207,6 +206,9 @@ footer a{color:var(--muted)}
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
+  background: transparent;
+  color: inherit;
   /* 符號常用的是 Noto Emoji / Symbols，留 fallback */
   font-family: "Noto Emoji","Segoe UI Symbol","Apple Color Emoji",sans-serif;
   font-size: 16px;
