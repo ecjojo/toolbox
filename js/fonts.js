@@ -1,5 +1,4 @@
-const btnSound_copy = new Audio('sounds/button-fx.mp3');
-// Cute Font Map
+// Loaded only when the font tab is opened. Audio is shared with the other tools.
 const cuteMap = {
   "A": "ᴀ", "B": "ʙ", "C": "ᴄ", "D": "ᴅ", "E": "ᴇ",
   "F": "ꜰ", "G": "ɢ", "H": "ʜ", "I": "ɪ", "J": "ᴊ",
@@ -8,23 +7,21 @@ const cuteMap = {
   "U": "ᴜ", "V": "ᴠ", "W": "ᴡ", "X": "x", "Y": "ʏ", "Z": "ᴢ"
 };
 
-// 將輸入字串轉換成 Cute Font
 function toCuteFont(text) {
-  return text.split('').map(ch => {
-    const upper = ch.toUpperCase();
-    return cuteMap[upper] || ch; // 有對應就轉，否則原樣
-  }).join('');
+  return Array.from(text, ch => cuteMap[ch.toUpperCase()] || ch).join('');
 }
 
-// 綁定輸入框事件
-document.addEventListener('DOMContentLoaded', () => {
+let mounted = false;
+export function mountFontTool() {
+  if (mounted) return;
   const input = document.querySelector('.fancytext');
   const output = document.getElementById('copy_8');
-
-  if (input && output) {
-    input.addEventListener('input', () => {
-      output.value = toCuteFont(input.value);
-      try { btnSound_copy.currentTime = 0; btnSound_copy.play().catch(() => {}); } catch {}
-    });
-  }
-});
+  if (!input || !output) return;
+  input.addEventListener('input', () => {
+    output.value = toCuteFont(input.value);
+    void window.btnSound_book?.play();
+  });
+  // Preserve text entered while the module was downloading.
+  if (input.value) output.value = toCuteFont(input.value);
+  mounted = true;
+}

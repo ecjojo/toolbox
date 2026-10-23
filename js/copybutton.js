@@ -1,45 +1,61 @@
-// js/copybutton.js
-const btnSound = new Audio('sounds/button-fx.mp3');
-
-// 供 emojibook.js 使用
-window.btnSound_book = btnSound;
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.body.addEventListener('click', async (e) => {
-    const btn = e.target.closest('.copybutton');
-    if (!btn) return;
-
-    // 取得目標文字
-    const targetSel = btn.dataset.clipboardTarget;
-    const text = targetSel
-      ? (document.querySelector(targetSel)?.value ?? '')
-      : (btn.dataset.clipboardText ?? '');
-
-    if (!text) return;
-
-    try {
-      await navigator.clipboard.writeText(text);
-    } catch {
-      // fallback for older browsers
-      const ta = Object.assign(document.createElement('textarea'), {
-        value: text, readOnly: true
-      });
-      ta.style.cssText = 'position:absolute;left:-9999px';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      ta.remove();
+// One lazy player shared by Emoji, Kaomoji, Symbol and the font tool.
+// Merely opening the page or switching tabs never requests the audio file.
+(() => {
+  let audio = null;
+  window.btnSound_book = {
+    get currentTime() { return audio?.currentTime ?? 0; },
+    set currentTime(value) {
+      if (audio) { try { audio.currentTime = value; } catch {} }
+    },
+    play() {
+      try {
+        if (!audio) {
+          audio = new Audio();
+          audio.preload = 'none';
+          audio.src = new URL('sounds/button-fx.mp3', document.baseURI).href;
+        }
+        audio.currentTime = 0;
+        // Playback rejection must never break copying or generate an unhandled promise.
+        return Promise.resolve(audio.play()).catch(() => {});
+      } catch {
+        return Promise.resolve();
+      }
     }
+  };
 
-    // 音效
-    try { btnSound.currentTime = 0; btnSound.play(); } catch {}
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.addEventListener('click', async (event) => {
+      const button = event.target.closest('.copybutton');
+      if (!button || button.disabled) return;
+      const selector = button.dataset.clipboardTarget;
+      const text = selector
+        ? (document.querySelector(selector)?.value ?? '')
+        : (button.dataset.clipboardText ?? '');
+      if (!text) return;
 
-    // 按鈕回饋
-    btn.textContent = 'Copied';
-    btn.disabled = true;
-    setTimeout(() => {
-      btn.textContent = 'Copy';
-      btn.disabled = false;
-    }, 1000);
-  });
-});
+      void window.btnSound_book.play();
+      let copied = false;
+      try {
+        await navigator.clipboard.writeText(text);
+        copied = true;
+      } catch {
+        const textarea = Object.assign(document.createElement('textarea'), {
+          value: text, readOnly: true
+        });
+        textarea.style.cssText = 'position:fixed;left:-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        try { copied = document.execCommand('copy'); } catch {}
+        textarea.remove();
+        button.focus({ preventScroll: true });
+      }
+      const original = button.textContent;
+      button.textContent = copied ? 'Copied' : 'Try again';
+      button.disabled = true;
+      setTimeout(() => {
+        button.textContent = original;
+        button.disabled = false;
+      }, 1000);
+    });
+  }, { once: true });
+})();

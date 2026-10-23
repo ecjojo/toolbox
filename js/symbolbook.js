@@ -1,5 +1,5 @@
 import { createVirtualBook } from './virtualbook.js?v=retain-20261024';
-const btnSound_symbol = new Audio('sounds/button-fx.mp3');
+const btnSound_symbol = window.btnSound_book;
 
 const STORAGE_KEY = 'recentSymbols';
 const MAX_RECENT = 36;
