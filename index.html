@@ -11,7 +11,7 @@
 <meta content="Emoji book, symbol book, cute font generator." property="og:description"/>
 <title>ecjojo clipboard - emoji | 顏文字 | 符號</title>
 <!-- App CSS -->
-<link href="styles.css?v=scrollfix-20261024" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="styles.css?v=retain-20261024" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A7%B0%3C/text%3E%3C/svg%3E" rel="icon">
 </link></head>
 <body>
@@ -93,9 +93,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (year) year.textContent = String(new Date().getFullYear());
 
   const loaders = {
-    'emoji book': () => import('./js/emojibook.js?v=scrollfix-20261024'),
+    'emoji book': () => import('./js/emojibook.js?v=retain-20261024'),
     'kaomoji book': () => import('./js/kaomojibook.js'),
-    'symbol book': () => import('./js/symbolbook.js?v=scrollfix-20261024'),
+    'symbol book': () => import('./js/symbolbook.js?v=retain-20261024'),
     'cute font generator': () => Promise.resolve()
   };
 

@@ -1,4 +1,4 @@
-import { createVirtualBook } from './virtualbook.js?v=scrollfix-20261024';
+import { createVirtualBook } from './virtualbook.js?v=retain-20261024';
 const btnSound_symbol = new Audio('sounds/button-fx.mp3');
 
 const STORAGE_KEY = 'recentSymbols';

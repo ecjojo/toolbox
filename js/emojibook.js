@@ -1,4 +1,4 @@
-import { createVirtualBook } from './virtualbook.js?v=scrollfix-20261024';
+import { createVirtualBook } from './virtualbook.js?v=retain-20261024';
 // js/emojibook.js
 import { emojis, defaultEmojis } from './emojidata.js';
 

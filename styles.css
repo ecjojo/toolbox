@@ -334,9 +334,8 @@ html, body, .book-panel {
 
 /* Observer-activated chunks reserve their exact height for stable native scrolling. */
 .virtual-book-chunk{
-  content-visibility:auto;
+  /* Mounted sections stay rendered on return visits. */
   contain:layout paint style;
-  /* The JS sets the measured height, including offscreen chunks. */
 }
 .virtual-book-row{
   display:grid;
