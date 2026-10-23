@@ -332,7 +332,11 @@ html, body, .book-panel {
 }
 
 
-/* Windowed book: constant-height rows and a bounded number of active glyphs. */
+/* Observer-activated chunks reserve their exact height for stable native scrolling. */
+.virtual-book-chunk{
+  content-visibility:auto;
+  contain:layout paint style;
+}
 .virtual-book-row{
   display:grid;
   grid-template-columns:repeat(var(--book-cols),minmax(0,1fr));
@@ -348,8 +352,6 @@ html, body, .book-panel {
   padding:0 0 5px;
   box-sizing:border-box;
 }
-.virtual-book-spacer{height:0;pointer-events:none}
-.virtual-book-visible{min-width:0}
 .virtual-book-row > .emoji,
 .virtual-book-row > .symbol{
   display:flex;
@@ -367,3 +369,7 @@ html, body, .book-panel {
 }
 .virtual-book-row > .emoji{height:32px;font-size:22px}
 .virtual-book-row > .symbol{height:34px;font-size:16px;white-space:nowrap}
+@media (hover:none){
+  .virtual-book-row > .emoji:hover,
+  .virtual-book-row > .symbol:hover{transform:none}
+}
