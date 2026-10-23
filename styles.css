@@ -226,10 +226,10 @@ footer a{color:var(--muted)}
 
 /* Book panels share one scroll behavior */
 .book-panel{
-  max-height:65vh;
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  scrollbar-gutter:stable;
+  /* Scroll the whole document. Nested scroll panes can trap wheel/touch input. */
+  max-height:none;
+  overflow:visible;
+  overscroll-behavior:auto;
 }
 
 
@@ -318,7 +318,7 @@ html, body, .book-panel {
   .card-shell{padding:20px 12px 12px;border-radius:12px}
   .toolbar{gap:6px}
   .toggle-button{padding:8px 10px;font-size:11px}
-  .book-panel{max-height:70svh}
+  .book-panel{max-height:none}
   footer{margin:16px 8px}
 }
 
@@ -336,6 +336,7 @@ html, body, .book-panel {
 .virtual-book-chunk{
   content-visibility:auto;
   contain:layout paint style;
+  /* The JS sets the measured height, including offscreen chunks. */
 }
 .virtual-book-row{
   display:grid;
